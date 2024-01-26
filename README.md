@@ -43,3 +43,6 @@ MVP時
 
 - 部屋の色認識機能。ポスターの色認識機能もVision AIを使用
 - 実際の部屋にポスターをマッピングするのはAR.jsを使用
+
+## 画面遷移図
+https://www.figma.com/file/yIQoFFfZWzQS7DEjzxoHnt/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=whiteboard&node-id=0%3A1&t=57l0QB5S0kEpsJDx-1
