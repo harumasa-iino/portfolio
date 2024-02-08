@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BOARD APP</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+  <header>
+    <%= render 'shared/header' %>
+  </header>
+
+  <body>
+    <%= yield %>
+  </body>
+
+  <footer>
+    <%= render 'shared/footer' %>
+  </footer>
+</html>
