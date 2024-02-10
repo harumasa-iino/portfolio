@@ -1,0 +1,25 @@
+@import "bootstrap";
+/* app/assets/stylesheets/application.scss */
+
+/* 共通のスタイル */
+.navbar, .footer {
+    background-color: #d1f5d3; /* 薄い緑の背景色を指定 */
+    padding: 20px 0; /* 適切な余白を追加 */
+}
+
+/* 共通のリストスタイル */
+.navbar ul, .footer ul {
+    margin: 0; /* リストのマージンをリセット */
+    padding: 0; /* リストのパディングをリセット */
+}
+
+/* 共通のリストアイテムスタイル */
+.navbar ul li, .footer ul li {
+    list-style: none; /* リストのマーカー（記号）を非表示 */
+    margin-bottom: 10px; /* リンク間の余白を調整 */
+}
+
+/* 共通の小さなパレグラフスタイル */
+.navbar p.small, .footer p.small {
+    margin: 0; /* パレグラフのマージンをリセット */
+}

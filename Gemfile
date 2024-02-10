@@ -12,6 +12,16 @@ gem "mysql2", "~> 0.5"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
+# Assets
+gem 'bootstrap', '~> 5.0.2'
+gem 'font-awesome-rails'
+gem 'jquery-rails'
+gem 'dartsass-rails', '~> 0.4.0'
+gem 'uglifier'
+gem "sprockets-rails"
+gem "jsbundling-rails"
+gem "sassc-rails"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
