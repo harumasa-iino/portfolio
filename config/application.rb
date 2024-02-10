@@ -24,5 +24,9 @@ module Portfolio
     # Skip views, helpers and assets when generating a new resource.
     # config.api_only = true
     config.port = 3001
+    
+    config.assets.digest = false
+    config.assets.debug = true
+
   end
 end

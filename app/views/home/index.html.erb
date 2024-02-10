@@ -1,11 +1,16 @@
 <!-- app/views/home/index.html.erb -->
 
-<%= image_tag("sample.jpeg", alt: "Sample Image") %>
+<div class="container">
+  <%= image_tag("sample.jpeg", alt: "Sample Image", class: 'img-fluid') %>
 
-<h1>あなたの部屋にあったポスターを</h1>
-<p>インテリアにあったポスターや絵画を</p>
-<p>提案してくれるアプリです</p>
-<p>統一感のある部屋の作り出すために</p>
-<p>ポスターを選んでみよう</p>
+  <h1 class="display-4">あなたの部屋にあったポスターを</h1>
+  <p class="lead">
+    インテリアにあったポスターや絵画を<br>
+    提案してくれるアプリです<br>
+    統一感のある部屋の作り出すために<br>
+    ポスターを選んでみよう
+  </p>
 
-<%= link_to "インテリアをアップロードする", "#" %>
+  <%= link_to "インテリアをアップロードする", "#", class: "btn btn-primary mt-3" %>
+</div>
+
