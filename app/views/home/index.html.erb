@@ -1,6 +1,5 @@
 <!-- app/views/home/index.html.erb -->
 
-<div class="container">
   <div class="swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -26,6 +25,22 @@
 
   <%= link_to "インテリアをアップロードする", "#", class: "btn btn-primary mt-3" %>
 
+  <div class="row">
+    <div class="col-md-6">
+      <div class="d-flex align-items-center">
+        <i class="fas fa-thin fa-filter mr-2" style="font-size: 3em;"></i>
+        <p class="no-margin">フィルターモード：デザインタイプを選択することで、好みのポスター/絵画を提案</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="d-flex align-items-center">
+        <i class="fas fa-thin fa-robot mr-2" style="font-size: 3em;"></i>
+        <p class="no-margin">レコメンドモード：部屋のインテリアに合ったポスター/絵画を色彩アルゴリズムを用いて提案</p>
+      </div>
+    </div>
+  </div>
+
+
   
   <script>
   const swiperOptions = {
@@ -36,7 +51,7 @@
         dynamicBullets: true,
       },
       autoplay: {
-        delay: 3000,
+        delay: 6000,
         disableOnInteraction: false,     
       },
     }
@@ -44,4 +59,3 @@
     new Swiper('.swiper', swiperOptions);
   }
   </script>
-</div>
