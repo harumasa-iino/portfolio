@@ -1,7 +1,20 @@
 <!-- app/views/home/index.html.erb -->
 
 <div class="container">
-  <%= image_tag("sample.jpeg", alt: "Sample Image", class: 'img-fluid') %>
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <%= image_tag("swiper1.jpg", alt: "swiper Image", class: 'img-fluid') %>
+      </div>
+      <div class="swiper-slide">
+        <%= image_tag("swiper2.jpg", alt: "swiper Image", class: 'img-fluid') %>
+      </div>
+      <div class="swiper-slide">
+        <%= image_tag("swiper3.jpg", alt: "swiper Image", class: 'img-fluid') %>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
 
   <h1 class="display-4">あなたの部屋にあったポスターを</h1>
   <p class="lead">
@@ -12,5 +25,23 @@
   </p>
 
   <%= link_to "インテリアをアップロードする", "#", class: "btn btn-primary mt-3" %>
-</div>
 
+  
+  <script>
+  const swiperOptions = {
+    direction: 'horizontal',
+    loop: true,
+    pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: true,
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,     
+      },
+    }
+  window.onload = function() {
+    new Swiper('.swiper', swiperOptions);
+  }
+  </script>
+</div>

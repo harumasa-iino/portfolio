@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "swiper": "^11.0.6"
+  },
+  "name": "app",
+  "description": "部屋に合うポスターや絵画を提案してくれるアプリ ポスターや絵画を飾りたいと考えている壁を部屋のインテリアと一緒に撮影するだけで、インテリアの雰囲気にあった絵を提案して実際に飾った場合どのような見た目になるのかを見ることが出来るアプリ。購入リンクをつけてそのまま購入の検討まで可能",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
