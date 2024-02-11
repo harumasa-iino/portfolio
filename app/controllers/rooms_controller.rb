@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room, only: %i[show edit update destroy]
 
   def new
     @room = Room.new
   end
 
   def show; end
-    
+
   def create
     @room = Room.new(room_params)
     if @room.save
@@ -21,7 +23,7 @@ class RoomsController < ApplicationController
   def update; end
 
   def destroy; end
-    
+
   private
 
   def set_room
