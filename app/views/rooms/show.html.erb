@@ -1,0 +1,11 @@
+<h1>アップロードした画像</h1>
+
+<% if @room.image.present? %>
+  <%= image_tag @room.image.url, class: "img-fluid" %>
+
+  <%= link_to "Remove Image", room_path(@room), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% else %>
+  <p>No image uploaded.</p>
+<% end %>
+
+<%= link_to "Back", new_room_path %>

@@ -2,9 +2,9 @@
     <div class="container-fluid">
 
       <!-- ロゴ -->
-      <a class="navbar-brand" href="#">
+      <%= link_to root_path do %>
         <%= image_tag('logo.jpg', alt: 'Logo', class: 'logo-class', size: '60x60') %>
-      </a>
+      <% end %>      
 
       <!-- メニュー -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

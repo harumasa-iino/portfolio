@@ -1,0 +1,16 @@
+<h1>New Room</h1>
+
+<%= form_with(model: @room, url: rooms_path, multipart: true) do |form| %>
+  <%= form.label :image %>
+  <%= form.file_field :image %>
+  <%= form.hidden_field :image_cache %>
+
+  <%= form.submit "Upload Image" %>
+<% end %>
+
+<% if @room.image.present? %>
+  <h2>Uploaded Image</h2>
+  <%= image_tag @room.image.url %>
+
+  <%= link_to "Remove Image", room_path(@room), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
