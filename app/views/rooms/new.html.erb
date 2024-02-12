@@ -1,6 +1,6 @@
 <h1>New Room</h1>
-
-<%= form_with(model: @room, url: rooms_path, multipart: true) do |form| %>
+<!-- local:trueで非Ajax形式で送信してCSRFの問題を解決 -->
+<%= form_with(model: @room, url: rooms_path, local: true, multipart: true) do |form| %>
   <%= form.label :image %>
   <%= form.file_field :image %>
   <%= form.hidden_field :image_cache %>

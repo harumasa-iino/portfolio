@@ -10,7 +10,10 @@ class RoomsController < ApplicationController
   def show; end
 
   def create
+    ensure_session
+
     @room = Room.new(room_params)
+    @room.session_id = session[:session_id]
     if @room.save
       redirect_to room_path(@room), notice: 'Room was successfully upload.'
     else
