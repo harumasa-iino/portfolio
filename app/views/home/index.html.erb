@@ -1,5 +1,6 @@
 <!-- app/views/home/index.html.erb -->
 
+<div class="container mt-5">
   <div class="swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -15,7 +16,7 @@
     <div class="swiper-pagination"></div>
   </div>
 
-  <h1 class="display-4">あなたの部屋にあったポスターを</h1>
+  <h1 class="display-4 mt-4">あなたの部屋にあったポスターを</h1>
   <p class="lead">
     インテリアにあったポスターや絵画を<br>
     提案してくれるアプリです<br>
@@ -25,37 +26,35 @@
 
   <%= link_to "インテリアをアップロードする", new_room_path, class: "btn btn-primary mt-3" %>
 
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-md-6">
       <div class="d-flex align-items-center">
         <i class="fas fa-thin fa-filter mr-2" style="font-size: 3em;"></i>
-        <p class="no-margin">フィルターモード：デザインタイプを選択することで、好みのポスター/絵画を提案</p>
+        <p class="mb-0">フィルターモード：デザインタイプを選択することで、好みのポスター/絵画を提案</p>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-3 mt-md-0">
       <div class="d-flex align-items-center">
         <i class="fas fa-thin fa-robot mr-2" style="font-size: 3em;"></i>
-        <p class="no-margin">レコメンドモード：部屋のインテリアに合ったポスター/絵画を色彩アルゴリズムを用いて提案</p>
+        <p class="mb-0">レコメンドモード：部屋のインテリアに合ったポスター/絵画を色彩アルゴリズムを用いて提案</p>
       </div>
     </div>
   </div>
+</div>
 
-
-  
-  <script>
-  const swiperOptions = {
-    direction: 'horizontal',
-    loop: true,
-    pagination: {
-        el: ".swiper-pagination",
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
         dynamicBullets: true,
       },
       autoplay: {
         delay: 6000,
-        disableOnInteraction: false,     
+        disableOnInteraction: false,
       },
-    }
-  window.onload = function() {
-    new Swiper('.swiper', swiperOptions);
-  }
-  </script>
+    });
+  });
+</script>

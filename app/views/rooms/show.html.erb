@@ -1,11 +1,33 @@
-<h1>アップロードした画像</h1>
-
-<% if @room.image.present? %>
-  <%= image_tag @room.image.url, class: "img-fluid" %>
-
-  <%= link_to "Remove Image", room_path(@room), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% else %>
-  <p>No image uploaded.</p>
-<% end %>
-
-<%= link_to "Back", new_room_path %>
+<div class="container">
+  <h1 class="mt-4 mb-4">アップロードした画像</h1>
+  <div class="row">
+    <% if @room.image.present? %>
+      <%= image_tag @room.image.url, class: "img-fluid mb-4" %>
+      <div class="d-grid gap-2 d-md-block mb-4">
+          <%= link_to "別の写真をアップロードする", new_room_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %>
+      </div>
+  </div>
+  <div class="row justify-content-between">
+    <div class="col mb-5">
+      <div class="card btn-outline-info">
+        <%= link_to "#", class: "card-body text-center" do %>
+          <i class="fas fa-thin fa-filter mr-2" style="font-size: 3em;"></i>
+          <h5 class="card-title">フィルターモード</h5>
+          <p class="card-text">好みのデザインタイプを選択</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col mb-5">
+      <div class="card btn-outline-info">
+        <%= link_to "#", class: "card-body text-center" do %>
+          <i class="fas fa-thin fa-robot mr-2" style="font-size: 3em;"></i>
+          <h5 class="card-title">レコメンドモード</h5>
+          <p class="card-text">インテリアに合うデザインを選択</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% else %>
+    <p>No image uploaded.</p>
+  <% end %>
+</div>

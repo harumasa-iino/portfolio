@@ -1,16 +1,13 @@
-<h1>New Room</h1>
-<!-- local:trueで非Ajax形式で送信してCSRFの問題を解決 -->
-<%= form_with(model: @room, url: rooms_path, local: true, multipart: true) do |form| %>
-  <%= form.label :image %>
-  <%= form.file_field :image %>
-  <%= form.hidden_field :image_cache %>
+<div class="container mt-5">
+  <h1 class="mb-4">New Room</h1>
 
-  <%= form.submit "Upload Image" %>
-<% end %>
+  <%= form_with(model: @room, url: rooms_path, local: true, multipart: true) do |form| %>
+    <div class="mb-3">
+      <%= form.label :image, class: "form-label" %>
+      <%= form.file_field :image, class: "form-control" %>
+      <%= form.hidden_field :image_cache %>
+    </div>
 
-<% if @room.image.present? %>
-  <h2>Uploaded Image</h2>
-  <%= image_tag @room.image.url %>
-
-  <%= link_to "Remove Image", room_path(@room), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+    <%= form.submit "Upload Image", class: "btn btn-primary mb-3" %>
+  <% end %>
+</div>
