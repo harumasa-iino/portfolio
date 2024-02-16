@@ -10,30 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_14_143843) do
-  create_table "answers", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "option"
-    t.bigint "question_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_answers_on_question_id"
+ActiveRecord::Schema[7.0].define(version: 20_240_215_151_040) do
+  create_table 'answers', charset: 'utf8mb4', force: :cascade do |t|
+    t.integer 'option'
+    t.bigint 'question_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['question_id'], name: 'index_answers_on_question_id'
   end
 
-  create_table "questions", charset: "utf8mb4", force: :cascade do |t|
-    t.text "body"
-    t.text "first_option"
-    t.text "second_option"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'contacts', charset: 'utf8mb4', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'email', null: false
+    t.string 'subject', null: false
+    t.text 'message', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "rooms", charset: "utf8mb4", force: :cascade do |t|
-    t.string "image"
-    t.string "image_cache"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "session_id"
+  create_table 'questions', charset: 'utf8mb4', force: :cascade do |t|
+    t.text 'body'
+    t.text 'first_option'
+    t.text 'second_option'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "answers", "questions"
+  create_table 'rooms', charset: 'utf8mb4', force: :cascade do |t|
+    t.string 'image'
+    t.string 'image_cache'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'session_id'
+  end
+
+  add_foreign_key 'answers', 'questions'
 end
