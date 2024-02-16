@@ -51,6 +51,7 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'letter_opener_web'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
@@ -63,3 +64,6 @@ group :development do
 end
 
 gem 'carrierwave', '2.2.2'
+
+# Configuration
+gem 'dotenv-rails'
