@@ -19,6 +19,8 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
+  config.action_mailer.delivery_method = :letter_opener_web
+
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
