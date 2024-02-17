@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :rooms, only: %i[new create show edit update destroy]
 
+  namespace :admin do
+    get '/', to: 'admin#index', as: 'index'
+    resources :posters, only: [:new, :create]
+  end
+
   resources :contacts, only: %i[new create] do
     collection do
       post 'confirm'
