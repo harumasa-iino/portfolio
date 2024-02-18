@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root 'home#index'
   resources :rooms, only: %i[new create show edit update destroy]
-
+  resources :questions, only: %i[show]
+  resources :answers, only: %i[create index]
   namespace :admin do
     root to: 'dashboards#index'
     resources :posters, only: [:new, :create]
