@@ -12,6 +12,7 @@ class ContactsController < ApplicationController
     render :new
   end
 
+  # 非同期通信でも必要なのか
   def back
     @contact = Contact.new(contact_params)
     render :new
