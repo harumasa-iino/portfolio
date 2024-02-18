@@ -67,3 +67,4 @@ gem 'carrierwave', '2.2.2'
 
 # Configuration
 gem 'dotenv-rails'
+gem 'high_voltage'
