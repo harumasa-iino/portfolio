@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[new create show edit update destroy]
 
   namespace :admin do
-    get '/', to: 'admin#index', as: 'index'
+    root to: 'dashboards#index'
     resources :posters, only: [:new, :create]
   end
 
