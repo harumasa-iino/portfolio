@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/02f0a8a95c.js" crossorigin="anonymous"></script>
     
   </head>
-
+<div class="footerFixed">
   <header>
     <%= render 'shared/header' %>
   </header>
@@ -26,6 +26,6 @@
   <footer>
     <%= render 'shared/footer' %>
   </footer>
-
+</div>
   
 </html>
