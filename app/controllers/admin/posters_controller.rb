@@ -1,4 +1,4 @@
-class Admin::PostersController < ApplicationController
+class Admin::PostersController < Admin::BaseController
   def new
     @poster = Poster.new
   end
