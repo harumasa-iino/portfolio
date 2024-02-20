@@ -6,7 +6,7 @@
     background-color: #7bd47f; /* 薄い緑の背景色を指定 */
     padding: 20px 0; /* 適切な余白を追加 */
 }
-.footer {
+footer {
     background-color: #afafaf; /* 薄い緑の背景色を指定 */
     padding: 20px 0; /* 適切な余白を追加 */
 }
@@ -28,24 +28,6 @@
     margin: 0; /* パレグラフのマージンをリセット */
 }
 
-
-.swiper {
-    width: 100%;
-    height: 300px;
-  }
-   /* 全体のスタイル */
-  .swiper-wrapper {
-      width: 100%;
-      height: 250px;
-  }
-  /* 全スライド共通スタイル */
-  .swiper-slide {
-      color: #ffffff;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      line-height: 250px;
-  }
  /* margin打消 */
   .no-margin {
     margin-bottom: 0 !important; /* ボトムマージンを無効にする */
