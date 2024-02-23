@@ -1,0 +1,12 @@
+<!-- app/views/admin/posters/show.html.erb -->
+<div class="container">
+  <h2 class="my-4"><%= @poster.title %></h2>
+
+  <%= render partial: 'poster', locals: { poster: @poster } %>
+
+  <%= link_to 'Back to List', admin_posters_path, class: 'btn btn-secondary' %>
+  <%= link_to 'Edit', edit_admin_poster_path(@poster), class: 'btn btn-secondary' %>
+  <%= link_to admin_poster_path(@poster),id: "button-delete-#{@poster.id}", data: {turbo_method: :delete, turbo_confirm: "削除しますか" } do %>
+    <i class="fa fa-trash"></i>
+  <%end%>
+</div>

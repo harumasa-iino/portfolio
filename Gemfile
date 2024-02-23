@@ -23,6 +23,7 @@ gem 'jsbundling-rails'
 gem 'sassc-rails'
 gem 'sprockets-rails'
 gem 'uglifier'
+gem 'turbo-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
