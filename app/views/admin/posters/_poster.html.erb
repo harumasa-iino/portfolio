@@ -1,0 +1,16 @@
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= image_tag(poster.image.url, class: 'img-fluid') %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= poster.title %></h5>
+        <p class="card-text"><strong>Artist:</strong> <%= poster.artist %></p>
+        <p class="card-text"><strong>Price:</strong> <%= number_to_currency(poster.price) %></p>
+        <p class="card-text"><strong>Description:</strong> <%= poster.description %></p>
+        <a href="<%= poster.url %>" target="_blank" class="btn btn-primary">View Poster at Amazon</a>
+      </div>
+    </div>
+  </div>
+</div>

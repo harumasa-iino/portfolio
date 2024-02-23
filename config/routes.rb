@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :answers, only: %i[create index]
   namespace :admin do
     root to: 'dashboards#index'
-    resources :posters, only: [:new, :create]
+    resources :posters
   end
 
   resources :contacts, only: %i[new create] do
