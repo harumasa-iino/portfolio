@@ -1,4 +1,6 @@
-class Category < ApplicationRecord  
+class Category < ApplicationRecord
+  has_many :poster_results
+  has_many :user_results
   enum pattern: {
     PATTERN1: 0b00000,
     PATTERN2: 0b00001,
