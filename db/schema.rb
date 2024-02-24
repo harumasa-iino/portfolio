@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_20_124244) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_24_021733) do
   create_table "answers", charset: "utf8mb4", force: :cascade do |t|
     t.integer "option"
     t.bigint "question_id", null: false
@@ -31,6 +31,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_20_124244) do
     t.string "email", null: false
     t.string "subject", null: false
     t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "poster_answers", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "option"
+    t.bigint "question_id", null: false
+    t.bigint "poster_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poster_id"], name: "index_poster_answers_on_poster_id"
+    t.index ["question_id"], name: "index_poster_answers_on_question_id"
+  end
+
+  create_table "poster_results", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "poster_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,5 +81,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_20_124244) do
     t.string "session_id"
   end
 
+  create_table "user_results", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "session_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "answers", "questions"
+  add_foreign_key "poster_answers", "posters"
+  add_foreign_key "poster_answers", "questions"
 end
