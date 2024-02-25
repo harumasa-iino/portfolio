@@ -1,0 +1,20 @@
+<h1><%= @poster.title %></h1>
+<%= image_tag(@poster.image.url, class: 'img-fluid', size: "200x100") %>
+
+<%= form_with model: PosterAnswer.new, url: admin_poster_poster_answers_path(@poster) do |form| %>
+  <% @questions.each do |question| %>
+    <div class="question">
+      <p><strong><%= question.body %></strong></p>
+
+      <%= form.radio_button "poster_answers[#{question.id}][option]", 0, id: "first_option_#{question.id}" %>
+      <%= form.label :option, question.first_option, value: 0, for: "first_option_#{question.id}" %>
+
+      <%= form.radio_button "poster_answers[#{question.id}][option]", 1, id: "second_option_#{question.id}" %>
+      <%= form.label :option, question.second_option, value: 1, for: "second_option_#{question.id}" %>        
+    </div>
+  <% end %>
+
+  <%= form.submit "Submit", class: "btn btn-primary mt-3" %>
+<% end %>
+
+<%= link_to 'Back to Poster Details', admin_poster_path(@poster), class: 'btn btn-secondary mt-3' %>

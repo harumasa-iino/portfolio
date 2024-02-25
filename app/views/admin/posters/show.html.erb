@@ -9,4 +9,10 @@
   <%= link_to admin_poster_path(@poster),id: "button-delete-#{@poster.id}", data: {turbo_method: :delete, turbo_confirm: "削除しますか" } do %>
     <i class="fa fa-trash"></i>
   <%end%>
+    <% unless @poster_answer.nil? || !@poster_answer.registered?(@poster.id) %>
+      <%= link_to 'Edit Poster Answer', edit_multiple_admin_poster_poster_answers_path(@poster, @poster_answer), class: 'btn btn-secondary' %>
+    <% else %>
+      <%= link_to 'Register Poster Answer', new_admin_poster_poster_answer_path(@poster), class: 'btn btn-secondary' %>
+    <% end %>
+
 </div>

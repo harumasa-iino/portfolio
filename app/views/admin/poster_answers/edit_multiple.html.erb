@@ -1,0 +1,24 @@
+<!-- app/views/admin/poster_answers/edit_multiple.html.erb -->
+
+<h1><%= @poster.title %></h1>
+<%= image_tag(@poster.image.url, class: 'img-fluid', size: '200x100') %>
+
+<%= form_with(model: @poster_answers, url: update_multiple_admin_poster_poster_answers_path(@poster), method: :patch) do |form| %>
+  <% @poster_answers.each do |poster_answer| %>
+    <div class="question">
+      <p><strong><%= poster_answer.question.body %></strong></p>
+
+      <% first_option_checked = poster_answer.option == 0 %>
+      <%= form.radio_button "poster_answers[#{poster_answer.question.id}][option]", 0, id: "first_option_#{poster_answer.question.id}", checked: first_option_checked %>
+      <%= form.label :option, poster_answer.question.first_option, value: 0, for: "first_option_#{poster_answer.question.id}" %>
+
+      <% second_option_checked = poster_answer.option == 1 %>
+      <%= form.radio_button "poster_answers[#{poster_answer.question.id}][option]", 1, id: "second_option_#{poster_answer.question.id}", checked: second_option_checked %>
+      <%= form.label :option, poster_answer.question.second_option, value: 1, for: "second_option_#{poster_answer.question.id}" %>        
+    </div>
+  <% end %>
+
+  <%= form.submit "Update", class: "btn btn-primary mt-3" %>
+<% end %>
+
+<%= link_to 'Back to Poster Details', admin_poster_path(@poster), class: 'btn btn-secondary mt-3' %>
