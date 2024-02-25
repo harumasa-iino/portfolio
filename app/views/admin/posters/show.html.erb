@@ -6,9 +6,7 @@
 
   <%= link_to 'Back to List', admin_posters_path, class: 'btn btn-secondary' %>
   <%= link_to 'Edit', edit_admin_poster_path(@poster), class: 'btn btn-secondary' %>
-  <%= link_to admin_poster_path(@poster),id: "button-delete-#{@poster.id}", data: {turbo_method: :delete, turbo_confirm: "削除しますか" } do %>
-    <i class="fa fa-trash"></i>
-  <%end%>
+  <%= link_to 'Delete', admin_poster_path(@poster), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "削除しますか" } %>
     <% unless @poster_answer.nil? || !@poster_answer.registered?(@poster.id) %>
       <%= link_to 'Edit Poster Answer', edit_multiple_admin_poster_poster_answers_path(@poster, @poster_answer), class: 'btn btn-secondary' %>
     <% else %>
