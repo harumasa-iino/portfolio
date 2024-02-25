@@ -18,6 +18,7 @@ class Admin::PostersController < Admin::BaseController
   end
 
   def show
+    @poster_answer = PosterAnswer.find_by(poster_id: @poster.id)
   end
 
   def edit
