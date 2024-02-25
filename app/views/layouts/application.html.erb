@@ -7,12 +7,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'my_application' %>
     <!-- Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <%= javascript_include_tag 'https://unpkg.com/swiper/swiper-bundle.min.js' %>
     <script src="https://kit.fontawesome.com/02f0a8a95c.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.skypack.dev/@hotwired/turbo"></script>
+    <%= javascript_importmap_tags %>
     
   </head>
 
