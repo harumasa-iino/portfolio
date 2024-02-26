@@ -7,7 +7,7 @@
       <div class="card-body">
         <h5 class="card-title"><%= poster.title %></h5>
         <p class="card-text"><strong>Artist:</strong> <%= poster.artist %></p>
-        <p class="card-text"><strong>Price:</strong> <%= number_to_currency(poster.price) %></p>
+        <p class="card-text"><strong>Price:</strong> <%= number_to_currency(poster.price, unit: '¥', precision: 0) %></p>
         <p class="card-text"><strong>Description:</strong> <%= poster.description %></p>
         <a href="<%= poster.url %>" target="_blank" class="btn btn-primary">View Poster at Amazon</a>
       </div>
