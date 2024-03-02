@@ -1,10 +1,16 @@
 class Answer < ApplicationRecord
   belongs_to :question
-  after_save :update_user_result
+  has_many :user_results
+  after_save :update_user_result, if: -> { question_id == Question.last.id }
 
   def self.extract_bit_pattern(session_id)
-    options = where(session_id_id: session_id).order(:question_id).pluck(:option)
-    options.inject(0) { |acc, option| (acc << 1) | option }
+    answers = Answer.where(session_id: session_id)
+                .order(:question_id)
+                .group_by(&:question_id)
+                .values.map { |group| group.last }
+
+    options = answers.map(&:option)
+    binary_string = options.join
   end
 
   def update_user_result

@@ -1,1 +1,8 @@
 <h1>回答完了</h1>
+<div class="row">
+  <% @posters.each do |poster| %>
+    <div class="col-md-2 mb-3">
+      <%= link_to image_tag(poster.image.url, class: 'img-fluid', size: "200x100") %>
+    </div>
+  <% end %>
+</div>
