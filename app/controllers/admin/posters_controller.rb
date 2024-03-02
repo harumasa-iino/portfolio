@@ -19,8 +19,7 @@ class Admin::PostersController < Admin::BaseController
 
   def show
     @poster_answer = PosterAnswer.find_by(poster_id: @poster.id)
-    pattern = @poster.poster_answers.extract_bit_pattern(@poster.id)
-    @binary_pattern = pattern.to_s(2).rjust(5, '0') 
+    @pattern = @poster.poster_answers.extract_bit_pattern(@poster.id) 
   end
 
   def edit

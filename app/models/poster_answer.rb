@@ -1,8 +1,7 @@
 class PosterAnswer < ApplicationRecord
   belongs_to :question
   belongs_to :poster
-  after_save :update_poster_result
-  after_update :update_poster_result
+  after_save :update_poster_result, if: -> { question_id == Question.last.id }
 
 
   def registered?(poster_id)
@@ -11,7 +10,7 @@ class PosterAnswer < ApplicationRecord
 
   def self.extract_bit_pattern(poster_id)
     options = where(poster_id: poster_id).order(:question_id).pluck(:option)
-    options.inject(0) { |acc, option| (acc << 1) | option }
+    binary_string = options.join
   end
 
   def update_poster_result
