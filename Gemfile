@@ -68,7 +68,9 @@ group :development do
   # gem "spring"
 end
 
+# Image
 gem 'carrierwave', '2.2.2'
+gem 'mini_magick'
 
 # Configuration
 gem 'dotenv-rails'

@@ -307,6 +307,7 @@ DEPENDENCIES
   jquery-rails
   jsbundling-rails
   letter_opener_web
+  mini_magick
   mysql2 (~> 0.5)
   pry-byebug
   pry-rails
