@@ -1,14 +1,14 @@
 class CreatePosterResults < ActiveRecord::Migration[7.0]
   def change
-    unless table_exists?(:poster_results)
-      create_table :poster_results do |t|
-        t.integer :category_id
-        t.integer :poster_id
+    return if table_exists?(:poster_results)
 
-        t.timestamps
-      end
+    create_table :poster_results do |t|
+      t.integer :category_id
+      t.integer :poster_id
 
-      add_foreign_key :poster_results, :categories, column: :category_id
+      t.timestamps
     end
+
+    add_foreign_key :poster_results, :categories, column: :category_id
   end
 end

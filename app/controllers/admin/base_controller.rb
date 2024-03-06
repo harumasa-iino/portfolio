@@ -9,4 +9,3 @@ class Admin::BaseController < ApplicationController
     end
   end
 end
-  
