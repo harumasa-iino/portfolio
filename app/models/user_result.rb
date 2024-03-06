@@ -6,10 +6,10 @@ class UserResult < ApplicationRecord
     bit_pattern = Answer.extract_bit_pattern(session_id)
     category = Category.find_by(pattern: bit_pattern)
 
-    # UserResultに登録 
+    # UserResultに登録
     result = UserResult.new(
-    session_id: session_id,
-    category_id: category.id
+      session_id:,
+      category_id: category.id
     )
     result.save
   end
