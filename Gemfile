@@ -20,12 +20,13 @@ gem 'dartsass-rails', '~> 0.4.0'
 gem 'font-awesome-rails'
 gem 'importmap-rails'
 gem 'jquery-rails'
-gem 'jsbundling-rails'
 gem 'sassc-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'uglifier'
+gem 'cssbundling-rails'
+gem 'jsbundling-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
