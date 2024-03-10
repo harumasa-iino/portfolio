@@ -1,12 +1,21 @@
 /* 共通のスタイル */
 .navbar {
-    background-color: #7bd47f; /* 薄い緑の背景色を指定 */
+    background-color: #AFF4C6; /* 薄い緑の背景色を指定 */
     padding: 20px 0; /* 適切な余白を追加 */
 }
 .footer {
-    background-color: #c7dec4; /* 薄い緑の背景色を指定 */
+    background-color: #757575; /* 薄い緑の背景色を指定 */
     padding: 20px 0; /* 適切な余白を追加 */
+    color: white; 
 }
+
+.footer a {
+    color: white; /* すべてのリンクの色も白に設定 */
+  }
+  
+  .footer a:hover {
+    color: #ccc; /* ホバー時の色は薄い灰色に設定、必要に応じて調整 */
+  }
 
 /* 共通のリストスタイル */
 .navbar ul, .footer ul {
@@ -28,4 +37,29 @@
  /* margin打消 */
   .no-margin {
     margin-bottom: 0; /* ボトムマージンを無効にする */
+  }
+  
+  body {
+    background-color: #f1f1e3; /* クリーム色の灰色 */
+    font-family: 'Noto Sans JP', sans-serif; /* Noto Sans JPを適用、利用する前にGoogle Fontsからインポートが必要です */
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  .wrapper { 
+    min-height: 100%;
+  }
+  
+  .header {
+    opacity: 0.8;
+    position: sticky;
+    top: 0vh;
+  }
+  
+  .footer {
+    opacity: 0.8;
+    position: sticky;
+    top: 100vh;
   }

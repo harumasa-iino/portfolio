@@ -15,18 +15,21 @@
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap">
+
+    
   </head>
 
   <header>
     <%= render 'shared/header' %>
   </header>
 
-  <body>
+  <body class="wrapper">
     <%= render 'shared/flash_message' %>
     <%= yield %>
   </body>
-
-  <footer>
+  
+  <footer class="footer">
     <%= render 'shared/footer' %>
   </footer>
 
