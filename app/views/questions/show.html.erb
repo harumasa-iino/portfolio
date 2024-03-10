@@ -1,17 +1,13 @@
-    <turbo-frame id="question">
-      <p><%= @question.body %></p>
-  
-      <%= form_with model: Answer.new do |f| %>
-        <%= f.hidden_field :option, value: 0 %>
-        <%= f.submit @question.first_option %> 
-        <%= f.hidden_field :question_id, value: @question.id %>
-      <% end %>
-      
-      <%= form_with model: Answer.new do |f| %>
-        <%= f.hidden_field :option, value: 1 %>
-        <%= f.submit @question.second_option %>
-        <%= f.hidden_field :question_id, value: @question.id %>
-      <% end %>
+  <p><%= @question.body %></p>
 
-    </turbo-frame>
-    
+  <%= form_with(model: Answer.new, url: answers_path, local: true) do |f| %>
+    <%= f.hidden_field :option, value: 0 %>
+    <%= f.submit @question.first_option %>
+    <%= f.hidden_field :question_id, value: @question.id %>
+  <% end %>
+
+  <%= form_with(model: Answer.new, url: answers_path, local: true) do |f| %>
+    <%= f.hidden_field :option, value: 1 %>
+    <%= f.submit @question.second_option %>
+    <%= f.hidden_field :question_id, value: @question.id %>
+  <% end %>

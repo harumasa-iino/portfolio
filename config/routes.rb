@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'home#index'
   resources :rooms, only: %i[new create show edit update destroy]
-  resources :questions, only: %i[show]
+  resources :questions, only: %i[show index]
   resources :answers, only: %i[create index]
   resources :composite_images, only: %i[index show]
   namespace :admin do
@@ -19,11 +19,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contacts, only: %i[new create] do
+  resources :contacts, only: [:new, :create] do
     collection do
-      post 'confirm'
-      post 'back'
-      get 'done'
+        post 'confirm'
+        post 'back'
+        get 'done'
     end
   end
 end
