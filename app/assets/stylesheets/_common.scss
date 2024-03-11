@@ -63,3 +63,22 @@
     position: sticky;
     top: 100vh;
   }
+
+  /*出典URL */
+
+  .image-with-source {
+    position: relative;
+    display: inline-block; /* または必要に応じて別のレイアウト */
+  }
+  
+  .source-text {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.4); /* 半透明の背景 */
+    padding: 1px 3px;
+    font-size: 8px;
+  }
+
+  
+  
