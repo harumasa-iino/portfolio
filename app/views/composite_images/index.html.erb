@@ -1,1 +1,7 @@
-<%= link_to image_tag(@composite_image.composite_image.url, class: 'img-fluid'), composite_image_path(@composite_image)  %>
+<div class="image-with-source">
+  <%= link_to image_tag(@composite_image.composite_image.url, class: 'img-fluid'), composite_image_path(@composite_image)  %>
+  <div class="source-text">
+  画像出典：
+    <%= link_to "Amazon.co.jp", @poster.url, target: "_blank" %>
+  </div>
+</div>
