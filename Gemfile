@@ -76,3 +76,4 @@ gem 'mini_magick'
 # Configuration
 gem 'dotenv-rails'
 gem 'high_voltage'
+gem 'devise'
