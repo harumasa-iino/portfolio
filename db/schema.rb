@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_12_143550) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_13_094748) do
   create_table "answers", charset: "utf8mb4", force: :cascade do |t|
     t.integer "option"
     t.bigint "question_id", null: false
@@ -89,6 +89,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_12_143550) do
     t.string "session_id"
   end
 
+  create_table "sns_credentials", charset: "utf8mb4", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "user_results", charset: "utf8mb4", force: :cascade do |t|
     t.integer "category_id"
     t.string "session_id"
@@ -112,4 +121,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_12_143550) do
   add_foreign_key "composite_images", "rooms"
   add_foreign_key "poster_answers", "posters"
   add_foreign_key "poster_answers", "questions"
+  add_foreign_key "sns_credentials", "users"
 end
