@@ -76,4 +76,8 @@ gem 'mini_magick'
 # Configuration
 gem 'dotenv-rails'
 gem 'high_voltage'
+
+# Authenticate
 gem 'devise'
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
