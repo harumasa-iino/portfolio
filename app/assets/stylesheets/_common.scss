@@ -81,4 +81,21 @@
   }
 
   
+  .login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #77C3A3; /* Bootstrapのブルー */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px; /* 角の丸み */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影をつける */
+    font-weight: bold;
+    transition: background-color 0.2s; /* 色の変化にアニメーションをつける */
+  }
+  
+  .login-button:hover {
+    background-color: #77c3a3db; /* ホバー時の色 */
+  }
+  
   
