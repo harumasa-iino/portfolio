@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks"
   }
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   resources :questions, only: %i[show index]
   resources :answers, only: %i[create index]
   resources :composite_images, only: %i[index show]
+  resources :users, only: [:show]
   namespace :admin do
     root to: 'dashboards#index'
     resources :posters do

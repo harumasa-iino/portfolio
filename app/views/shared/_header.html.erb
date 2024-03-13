@@ -5,22 +5,13 @@
         <%= image_tag('logo.jpg', alt: 'Logo', class: 'logo-class', size: '90x45') %>
       <% end %>      
 
-      <!-- メニュー -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <% if user_signed_in? %>
+        <%= link_to 'マイページ', user_path(current_user) %> |
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path, class:"login-button" %>
+      <% end %>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Menu Item 1</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Menu Item 2</a>
-          </li>
-          <!-- 他のメニューアイテムを追加 -->
-        </ul>
-      </div>
 
     </div>
   </header>
