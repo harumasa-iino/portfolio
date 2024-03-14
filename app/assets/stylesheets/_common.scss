@@ -98,4 +98,14 @@
     background-color: #77c3a3db; /* ホバー時の色 */
   }
   
+  /* googleボタン */
+  .google-signin-btn {
+    width: 190px; /* お好みのサイズに */
+    height: auto; /* 画像の比率を維持 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 影のスタイルを定義 */
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: block; /* または inline-block にすると、元の文書フロー内に表示されます */
+  }
   
