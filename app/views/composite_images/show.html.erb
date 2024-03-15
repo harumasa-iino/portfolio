@@ -1,6 +1,8 @@
-<div class="container">
-  <h2 class="my-4"><%= @poster.title %></h2>
-
-  <%= render partial: 'posters/poster', locals: { poster: @poster } %>
-  <%= link_to 'Back to Image', composite_images_path, class: 'btn btn-secondary' %>
+<div class="image-with-source">
+  <%= link_to image_tag(@composite_image.composite_image.url, class: 'img-fluid'), poster_path(@composite_image.poster_id)  %>
+  <div class="source-text">
+  画像出典：
+    <%= link_to "Amazon.co.jp", @composite_image.poster.url, target: "_blank" %>
+  </div>
 </div>
+<%= link_to '保存する', save_composite_image_path(@composite_image), data: { "turbo-method": :post } %>

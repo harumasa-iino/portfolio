@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[new create show edit update destroy]
   resources :questions, only: %i[show index]
   resources :answers, only: %i[create index]
-  resources :composite_images, only: %i[index show]
+  resources :composite_images, only: %i[index show] do
+    member do
+      post 'save'
+    end
+  end
+  resources :posters, only: [:show]
   resources :users, only: [:show]
   namespace :admin do
     root to: 'dashboards#index'

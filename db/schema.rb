@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_13_094748) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_15_083640) do
   create_table "answers", charset: "utf8mb4", force: :cascade do |t|
     t.integer "option"
     t.bigint "question_id", null: false
@@ -31,7 +31,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_13_094748) do
     t.string "composite_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "poster_id"
     t.index ["room_id"], name: "index_composite_images_on_room_id"
+    t.index ["user_id"], name: "index_composite_images_on_user_id"
   end
 
   create_table "contacts", charset: "utf8mb4", force: :cascade do |t|
