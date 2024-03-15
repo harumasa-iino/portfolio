@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :sns_credential, dependent: :destroy
+  has_many :composite_images
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
