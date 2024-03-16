@@ -1,13 +1,19 @@
 <div class="container mt-5">
-  <h1 class="mb-4">New Room</h1>
-
   <%= form_with(model: @room, url: rooms_path, local: true, multipart: true) do |form| %>
     <div class="mb-3">
-      <%= form.label :image, class: "form-label" %>
-      <%= form.file_field :image, class: "form-control" %>
-      <%= form.hidden_field :image_cache %>
+      <div class="border p-4">
+        <h2 class="text-dark">インテリアのアップロード</h2>
+        <p>ポスターを飾りたい壁を中央にして、部屋のインテリアをアップロードしましょう。アップロードした部屋に好みのポスターを飾ったイメージを確認できます。</p>
+      
+        <div class="d-none">
+          <%= form.file_field :image, id: "room_image", class: "form-control", onchange: "this.form.submit();" %>
+        </div>
+        <label for="room_image" class="btn btn-primary d-block mt-3">
+          <span id="upload_label">画像をアップロードする</span>
+        </label>
+      
+        <%= form.hidden_field :image_cache %>
+      </div>
     </div>
-
-    <%= form.submit "Upload Image", class: "btn btn-primary mb-3" %>
-  <% end %>
+  <% end %>  
 </div>
