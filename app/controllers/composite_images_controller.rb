@@ -3,11 +3,7 @@ class CompositeImagesController < ApplicationController
   before_action :set_composite_image, only: [:show, :save]
 
   def index
-    wallpaper_path = @room.image.path
-    poster_path = @poster.image.path
-    CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, @poster.id)
-    # 何回も合成していると同じ画像が出てきてしまうためfirstにしているが、posterとroomの組み合わせをuniqueにしたい
-    @composite_image = CompositeImage.where(room_id: @room.id).order(id: :desc).first
+    set_posters_and_composite_images
   end
 
   def show;  end
@@ -24,6 +20,24 @@ class CompositeImagesController < ApplicationController
   end
 
   private
+
+  def set_room
+    session_id = session[:session_id]
+    @room = Room.find_by(session_id: session_id)
+  end
+
+  def set_posters_and_composite_images
+    user_result = UserResult.where(session_id: session[:session_id]).order(created_at: :desc).first
+    return unless user_result && @room
+
+    @posters = Poster.joins(:poster_results).where(poster_results: {category_id: user_result.category_id})
+    @composite_images = @posters.map do |poster|
+      wallpaper_path = @room.image.path
+      poster_path = poster.image.path
+      composite_image = CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id)
+      composite_image
+    end.uniq { |ci| ci.poster_id } # Ensure unique poster_id for each composite_image
+  end
 
   def set_room_and_poster
     session_id = session[:session_id]

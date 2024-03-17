@@ -1,13 +1,23 @@
-  <p><%= @question.body %></p>
+<div class="container">
+  <div class="text-center my-4">
+    <p><%= @question.body %></p>
+  </div>
+  
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3">
+      <%= form_with(model: Answer.new, url: answers_path, local: true) do |f| %>
+        <%= f.hidden_field :option, value: 0 %>
+        <%= f.submit @question.first_option, class: "btn btn-outline-primary btn-lg w-100 buttonF" %>
+        <%= f.hidden_field :question_id, value: @question.id %>
+      <% end %>
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <%= form_with(model: Answer.new, url: answers_path, local: true) do |f| %>
+        <%= f.hidden_field :option, value: 1 %>
+        <%= f.submit @question.second_option, class: "btn btn-outline-primary btn-lg w-100 buttonF" %>
+        <%= f.hidden_field :question_id, value: @question.id %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-  <%= form_with(model: Answer.new, url: answers_path, local: true) do |f| %>
-    <%= f.hidden_field :option, value: 0 %>
-    <%= f.submit @question.first_option %>
-    <%= f.hidden_field :question_id, value: @question.id %>
-  <% end %>
-
-  <%= form_with(model: Answer.new, url: answers_path, local: true) do |f| %>
-    <%= f.hidden_field :option, value: 1 %>
-    <%= f.submit @question.second_option %>
-    <%= f.hidden_field :question_id, value: @question.id %>
-  <% end %>

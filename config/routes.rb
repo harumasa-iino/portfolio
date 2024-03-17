@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :rooms, only: %i[new create show edit update destroy]
   resources :questions, only: %i[show index]
-  resources :answers, only: %i[create index]
+  resources :answers, only: %i[create]
   resources :composite_images, only: %i[index show] do
     member do
       post 'save'
