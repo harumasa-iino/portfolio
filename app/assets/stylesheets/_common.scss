@@ -109,3 +109,59 @@
     display: block; /* または inline-block にすると、元の文書フロー内に表示されます */
   }
   
+  .btn-responsive {
+    width: 100%; /* ボタンの幅を親要素に合わせます */
+    min-width: 150px; /* ボタンの最小幅を設定します */
+    max-width: 300px; /* ボタンの最大幅を設定します */
+  }
+  /*　buttonF　*/
+  .buttonF {
+    border-radius: .5em;
+    box-shadow: 0 6px #2c5225;
+    top: 0;
+    transition: .2s box-shadow,.2s top,.4s background;
+  }
+  .buttonF:hover {
+    box-shadow: 0 5px #2c5225;
+    top: 1px;
+  }
+  .buttonF:active {
+    background-color: #2c5225;
+    box-shadow: 0 0 #2c5225;
+    top: 6px;
+  }
+  @media (max-width: 768px) {
+    .btn-responsive {
+      width: auto; /* スマートフォンなどの小さい画面での幅を自動に設定します */
+    }
+  }
+
+  .btn-outline-primary {
+    color: #254423; /* ボタンのテキスト色を変更 */
+    border-color: #6BB362; /* ボタンのボーダー色を変更 */
+  }
+
+  .btn-outline-primary:hover {
+    color: #fff; /* ホバー時のテキスト色を白に変更 */
+    background-color: #6BB362; /* ホバー時の背景色を変更 */
+    border-color: #6BB362; /* ホバー時のボーダー色も同じ色に変更 */
+  }
+
+  .btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(107, 179, 98, 0.5); /* フォーカス時のシャドウの色を変更 */
+  }
+
+  /* アクティブ状態や、訪問済みリンク状態のスタイルを定義する場合は、以下のルールも追加 */
+  .btn-outline-primary:active, .btn-outline-primary.active,
+  .btn-outline-primary:not(:disabled):not(.disabled).active,
+  .btn-outline-primary:not(:disabled):not(.disabled):active,
+  .show > .btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #6BB362;
+    border-color: #6BB362;
+  }
+  
+  /* リンク訪問済み時のスタイルも変更する場合は、以下のルールを追加 */
+  .btn-outline-primary:visited {
+    color: #6BB362;
+  }

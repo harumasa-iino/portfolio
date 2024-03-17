@@ -5,4 +5,8 @@
     <%= link_to "Amazon.co.jp", @composite_image.poster.url, target: "_blank" %>
   </div>
 </div>
-<%= link_to '保存する', save_composite_image_path(@composite_image), data: { "turbo-method": :post } %>
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <%= link_to '保存する', save_composite_image_path(@composite_image), class: "btn btn-primary mt-3 btn-lg w-100", data: { "turbo-method": :post } %>
+  </div>
+</div>

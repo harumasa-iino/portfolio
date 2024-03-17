@@ -30,5 +30,7 @@ class CompositeImage < ApplicationRecord
     # Tempfileを閉じて削除
     temp_file.close
     temp_file.unlink
+    
+    return composite_image
   end
 end
