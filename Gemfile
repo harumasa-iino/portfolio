@@ -16,17 +16,17 @@ gem 'puma', '~> 5.0'
 
 # Assets
 gem 'bootstrap', '~> 5.0.2'
+gem 'cssbundling-rails'
 gem 'dartsass-rails', '~> 0.4.0'
 gem 'font-awesome-rails'
 gem 'importmap-rails'
 gem 'jquery-rails'
+gem 'jsbundling-rails'
 gem 'sassc-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'uglifier'
-gem 'cssbundling-rails'
-gem 'jsbundling-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -80,5 +80,5 @@ gem 'high_voltage'
 # Authenticate
 gem 'devise'
 gem 'devise-i18n'
-gem "omniauth-google-oauth2"
-gem "omniauth-rails_csrf_protection"
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'

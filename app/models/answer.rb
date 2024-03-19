@@ -1,6 +1,9 @@
 class Answer < ApplicationRecord
   belongs_to :question
   has_many :user_results
+  validates :question_id, presence: true
+  validates :option, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
+
   after_save :update_user_result, if: -> { question_id == Question.last.id }
 
   def self.extract_bit_pattern(session_id)

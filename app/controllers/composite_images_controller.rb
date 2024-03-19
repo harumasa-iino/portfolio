@@ -1,12 +1,12 @@
 class CompositeImagesController < ApplicationController
-  before_action :set_room_and_poster, only: [:index, :show]
-  before_action :set_composite_image, only: [:show, :save]
+  before_action :set_room_and_poster, only: %i[index show]
+  before_action :set_composite_image, only: %i[show save]
 
   def index
     set_posters_and_composite_images
   end
 
-  def show;  end
+  def show; end
 
   def save
     if user_signed_in?
@@ -23,14 +23,14 @@ class CompositeImagesController < ApplicationController
 
   def set_room
     session_id = session[:session_id]
-    @room = Room.find_by(session_id: session_id)
+    @room = Room.find_by(session_id:)
   end
 
   def set_posters_and_composite_images
     user_result = UserResult.where(session_id: session[:session_id]).order(created_at: :desc).first
     return unless user_result && @room
 
-    @posters = Poster.joins(:poster_results).where(poster_results: {category_id: user_result.category_id})
+    @posters = Poster.joins(:poster_results).where(poster_results: { category_id: user_result.category_id })
     @composite_images = @posters.map do |poster|
       wallpaper_path = @room.image.path
       poster_path = poster.image.path
@@ -44,8 +44,8 @@ class CompositeImagesController < ApplicationController
     user_result = UserResult.where(session_id:).order(created_at: :desc).first
     return unless user_result
 
-    @poster = Poster.joins(:poster_results).find_by(poster_results: {category_id: user_result.category_id})
-    @room = Room.find_by(session_id: session_id)
+    @poster = Poster.joins(:poster_results).find_by(poster_results: { category_id: user_result.category_id })
+    @room = Room.find_by(session_id:)
   end
 
   def set_composite_image

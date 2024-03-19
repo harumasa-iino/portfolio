@@ -1,6 +1,4 @@
 class Contact < ApplicationRecord
-  validates :name, presence: true
-  validates :email, presence: true
-  validates :subject, presence: true
-  validates :message, presence: true
+  validates :name, :email, :subject, :message, presence: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 end
