@@ -1,6 +1,7 @@
 class UserResult < ApplicationRecord
   belongs_to :category
   has_many :answers
+  validates :category_id, :session_id, presence: true
 
   def self.update_from_answer(session_id)
     bit_pattern = Answer.extract_bit_pattern(session_id)

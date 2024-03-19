@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :ensure_session
-  
+
   protected
-  def after_sign_in_path_for(resource)
+
+  def after_sign_in_path_for(_resource)
     session.delete(:return_to) || root_path
   end
 

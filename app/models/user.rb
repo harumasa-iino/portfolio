@@ -1,13 +1,14 @@
 class User < ApplicationRecord
   has_many :sns_credential, dependent: :destroy
   has_many :composite_images
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
 
-  class << self   # ここからクラスメソッドで、メソッドの最初につける'self.'を省略できる
+  class << self # ここからクラスメソッドで、メソッドの最初につける'self.'を省略できる
     # SnsCredentialsテーブルにデータがないときの処理
     def without_sns_data(auth)
       user = User.where(email: auth.info.email).first
@@ -18,10 +19,10 @@ class User < ApplicationRecord
           provider: auth.provider,
           user_id: user.id
         )
-      else   # User.newの記事があるが、newは保存までは行わないのでcreateで保存をかける
+      else # User.newの記事があるが、newは保存までは行わないのでcreateで保存をかける
         user = User.create(
-          email: auth.info.email,     # デフォルトから追加したカラムがあれば記入
-          password: Devise.friendly_token(10)   # 10文字の予測不能な文字列を生成する
+          email: auth.info.email, # デフォルトから追加したカラムがあれば記入
+          password: Devise.friendly_token(10) # 10文字の予測不能な文字列を生成する
         )
         sns = SnsCredential.create(
           user_id: user.id,
@@ -29,7 +30,7 @@ class User < ApplicationRecord
           provider: auth.provider
         )
       end
-      { user:, sns: }   # ハッシュ形式で呼び出し元に返す
+      { user:, sns: } # ハッシュ形式で呼び出し元に返す
     end
 
     # SnsCredentialsテーブルにデータがあるときの処理

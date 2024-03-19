@@ -3,6 +3,7 @@ class CompositeImage < ApplicationRecord
   belongs_to :room
   belongs_to :user, optional: true
   belongs_to :poster
+  validates :room_id, presence: true
 
   require 'mini_magick'
 
@@ -22,15 +23,16 @@ class CompositeImage < ApplicationRecord
 
     temp_file = Tempfile.new(['result', '.jpg'])
     result.write(temp_file.path)
+
     # CarrierWaveを使って加工した画像を保存
-    composite_image =new(room_id: room_id, poster_id: poster_id)
+    composite_image = new(room_id:, poster_id:)
     composite_image.composite_image = temp_file
     composite_image.save!
 
     # Tempfileを閉じて削除
     temp_file.close
     temp_file.unlink
-    
-    return composite_image
+
+    composite_image
   end
 end

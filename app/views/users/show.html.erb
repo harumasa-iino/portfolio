@@ -2,6 +2,8 @@
 
 <p>メール: <%= @user.email %></p>
 
+<h3>保存画像一覧</h3>
+
   <% @composite_images.each do |composite_image| %>
     <div class="image-with-source">
       <%= link_to image_tag(composite_image.composite_image.url, class: 'img-fluid', size: "200x100"), composite_image_path(composite_image) %>

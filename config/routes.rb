@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   get 'users/show'
   devise_for :users, controllers: {
-    omniauth_callbacks: "users/omniauth_callbacks"
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'home#index'
@@ -29,11 +29,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contacts, only: [:new, :create] do
+  resources :contacts, only: %i[new create] do
     collection do
-        post 'confirm'
-        post 'back'
-        get 'done'
+      post 'confirm'
+      post 'back'
+      get 'done'
     end
   end
 end

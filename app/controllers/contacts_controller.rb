@@ -5,11 +5,11 @@ class ContactsController < ApplicationController
 
   def confirm
     @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      flash[:alert] = @contact.errors.full_messages.join(", ")
-      @contact = Contact.new
-      render :new
-    end
+    return unless @contact.invalid?
+
+    flash[:alert] = @contact.errors.full_messages.join(', ')
+    @contact = Contact.new
+    render :new
   end
 
   # 非同期通信でも必要なのか
@@ -24,7 +24,7 @@ class ContactsController < ApplicationController
       ContactMailer.send_mail(@contact).deliver_now
       redirect_to done_contacts_path
     else
-      flash[:alert] = @contact.errors.full_messages.join(", ")
+      flash[:alert] = @contact.errors.full_messages.join(', ')
       @contact = Contact.new
       render :new
     end
