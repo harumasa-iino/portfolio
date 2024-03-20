@@ -7,6 +7,8 @@ class UserResult < ApplicationRecord
     bit_pattern = Answer.extract_bit_pattern(session_id)
     category = Category.find_by(pattern: bit_pattern)
 
+    return unless category
+
     # UserResultに登録
     result = UserResult.new(
       session_id:,

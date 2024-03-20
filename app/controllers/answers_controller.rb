@@ -7,7 +7,7 @@ class AnswersController < ApplicationController
     if @answer.question_id < Question.last.id
       redirect_to question_path(@answer.question_id + 1)
     else
-      redirect_to composite_images_path
+      redirect_to composite_images_path, notice: t('messages.answers.create_success')
     end
   end
 

@@ -66,21 +66,31 @@
 
   /*出典URL */
 
-  .image-with-source {
+  .image-container {
     position: relative;
-    display: inline-block; /* または必要に応じて別のレイアウト */
+    padding: 5px; /* 画像間のスペースを調整 */
+  }
+  
+  .image-container .img-fluid {
+    margin-bottom: 10px; /* 画像の下のスペースを追加 */
   }
   
   .source-text {
     position: absolute;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.4); /* 半透明の背景 */
-    padding: 1px 3px;
-    font-size: 8px;
+    bottom: 8px; /* 下からの距離 */
+    right: 8px; /* 左からの距離 */
+    background-color: rgba(255, 255, 255, 0.8); /* 背景色を半透明に */
+    padding: 2px 5px; /* 内側の余白 */
+    font-size: 10px; /* フォントサイズを小さく */
   }
 
+  .img-fluid {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* X軸のオフセット, Y軸のオフセット, ブラーの大きさ, 色 */
+  }
   
+
+/*ログインボタン*/
+
   .login-button {
     display: inline-block;
     padding: 10px 20px;
@@ -114,7 +124,8 @@
     min-width: 150px; /* ボタンの最小幅を設定します */
     max-width: 300px; /* ボタンの最大幅を設定します */
   }
-  /*　buttonF　*/
+
+  /*　質問ボタン　*/
   .buttonF {
     border-radius: .5em;
     box-shadow: 0 6px #2c5225;
@@ -165,3 +176,5 @@
   .btn-outline-primary:visited {
     color: #6BB362;
   }
+
+  

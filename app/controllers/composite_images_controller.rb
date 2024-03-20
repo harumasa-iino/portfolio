@@ -11,7 +11,7 @@ class CompositeImagesController < ApplicationController
   def save
     if user_signed_in?
       @composite_image.update(user_id: current_user.id)
-      redirect_to @composite_image, notice: '画像が保存されました。'
+      redirect_to @composite_image, notice: t('messages.composite_images.save_success')
     else
       # ユーザーがログインしていない場合は、サインアップ画面にリダイレクト
       session[:return_to] = composite_image_path(@composite_image)
@@ -27,6 +27,7 @@ class CompositeImagesController < ApplicationController
   end
 
   def set_posters_and_composite_images
+    @composite_images = [] 
     user_result = UserResult.where(session_id: session[:session_id]).order(created_at: :desc).first
     return unless user_result && @room
 
