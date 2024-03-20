@@ -72,6 +72,44 @@ ja:
       blank: "を入力してください"
       taken: "はすでに存在します"
       invalid: "は不正な値です"
+      less_than_or_equal_to: "オプションは1または2である必要があります"
+    models:
+      answer:
+        attributes:
+          option:
+            blank: "オプションを入力してください"
+      category:
+        attributes:
+          pattern:
+            blank: "パターンを入力してください"
+      composite_image:
+        attributes:
+          composite_image:
+            blank: "合成画像を入力してください"
+          room_id:
+            blank: "部屋IDを入力してください"
+          user_id:
+            blank: "ユーザーIDを入力してください"
+      poster_answer:
+        attributes:
+          option:
+            blank: "オプションを入力してください"
+      poster:
+        attributes:
+          image:
+            blank: "画像を入力してください"
+      question:
+        attributes:
+          body:
+            blank: "本文を入力してください"
+          first_option:
+            blank: "最初の選択肢を入力してください"
+          second_option:
+            blank: "二番目の選択肢を入力してください"
+      room:
+        attributes:
+          image:
+            blank: "画像を入力してください"
   messages:
     rooms:
       upload_success: "アップロード完了"
@@ -79,3 +117,7 @@ ja:
       create_success: "回答完了"
     composite_images:
       save_success: "保存しました"
+    record_invalid: "レコードが無効です: %{errors}"
+    restrict_dependent_destroy:
+      has_one: "%{record}が存在するため削除できません"
+      has_many: "%{record}が存在するため削除できません"

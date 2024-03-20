@@ -1,7 +1,7 @@
 class PosterAnswer < ApplicationRecord
   belongs_to :question
   belongs_to :poster
-  validates :question_id, :poster_id, presence: true
+  validates :option, :question_id, :poster_id, presence: true
   after_save :update_poster_result, if: -> { question_id == Question.last.id }
 
   def registered?(poster_id)

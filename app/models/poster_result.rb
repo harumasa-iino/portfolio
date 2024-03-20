@@ -7,6 +7,8 @@ class PosterResult < ApplicationRecord
     bit_pattern = PosterAnswer.extract_bit_pattern(poster_id)
     category = Category.find_by(pattern: bit_pattern)
 
+    return unless category 
+
     # PosterResultに登録
     result = PosterResult.new(
       poster_id:,

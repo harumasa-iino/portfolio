@@ -3,7 +3,7 @@ class CompositeImage < ApplicationRecord
   belongs_to :room
   belongs_to :user, optional: true
   belongs_to :poster
-  validates :room_id, presence: true
+  validates :room_id, :composite_image, presence: true
 
   require 'mini_magick'
 
