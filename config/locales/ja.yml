@@ -1,0 +1,81 @@
+ja:
+  activerecord:
+    models:
+      answer: 回答
+      category: カテゴリ
+      composite_image: 合成画像
+      contact: お問い合わせ
+      poster_answer: ポスター回答
+      poster_result: ポスター結果
+      poster: ポスター
+      question: 質問
+      room: 部屋
+      sns_credential: SNS認証情報
+      user_result: ユーザー結果
+      user: ユーザー
+    attributes:
+      answer:
+        option: オプション
+        question_id: 質問ID
+        session_id: セッションID
+      category:
+        pattern: パターン
+      composite_image:
+        room_id: 部屋ID
+        composite_image: 合成画像
+        user_id: ユーザーID
+        poster_id: ポスターID
+      contact:
+        name: 名前
+        email: メールアドレス
+        subject: 件名
+        message: メッセージ
+      poster_answer:
+        option: オプション
+        question_id: 質問ID
+        poster_id: ポスターID
+      poster_result:
+        category_id: カテゴリID
+        poster_id: ポスターID
+      poster:
+        image: 画像
+        url: URL
+        title: タイトル
+        height: 高さ
+        width: 幅
+        price: 価格
+        artist: アーティスト
+        description: 説明
+      question:
+        body: 本文
+        first_option: 最初の選択肢
+        second_option: 二番目の選択肢
+      room:
+        image: 画像
+        image_cache: 画像キャッシュ
+        session_id: セッションID
+      sns_credential:
+        provider: プロバイダー
+        uid: UID
+        user_id: ユーザーID
+      user_result:
+        category_id: カテゴリID
+        session_id: セッションID
+      user:
+        email: メールアドレス
+        encrypted_password: 暗号化パスワード
+        reset_password_token: パスワードリセットトークン
+        reset_password_sent_at: パスワードリセット送信時刻
+        remember_created_at: 記憶作成時刻
+  errors:
+    messages:
+      blank: "を入力してください"
+      taken: "はすでに存在します"
+      invalid: "は不正な値です"
+  messages:
+    rooms:
+      upload_success: "アップロード完了"
+    answers:
+      create_success: "回答完了"
+    composite_images:
+      save_success: "保存しました"

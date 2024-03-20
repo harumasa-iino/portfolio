@@ -1,12 +1,16 @@
-<h1>回答完了</h1>
-<div class="row">
-  <% @composite_images.each do |composite_image| %>
-    <div class="col-md-4 mb-3">
-      <%= link_to (image_tag composite_image.composite_image.url, class: 'img-fluid'), composite_image_path(composite_image) %>
-      <div class="source-text">
-        画像出典：
-        <%= link_to "Amazon.co.jp", composite_image.poster.url, target: "_blank" %>
+<h1>マッチした結果</h1>
+<div class="container">
+  <div class="row">
+    <% @composite_images.each do |composite_image| %>
+      <div class="col-md-4 mb-3 image-container">
+        <%= link_to composite_image_path(composite_image) do %>
+          <%= image_tag composite_image.composite_image.url, class: 'img-fluid' %>
+          <div class="source-text">
+            画像出典：
+            <%= link_to "Amazon.co.jp", composite_image.poster.url, target: "_blank" %>
+          </div>
+        <% end %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
