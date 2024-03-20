@@ -7,7 +7,11 @@ class RoomsController < ApplicationController
     @room = Room.new
   end
 
-  def show; end
+  def show
+    return if @room.session_id == session[:session_id]
+
+    redirect_to root_path, notice: t('messages.rooms.show_danger')
+  end
 
   def create
     ensure_session

@@ -7,7 +7,7 @@ RSpec.describe PosterAnswer, type: :model do
   it 'is valid with valid attributes' do
     question = create(:question)
     poster = create(:poster)
-    poster_answer = build(:poster_answer, question: question, poster: poster)
+    poster_answer = build(:poster_answer, question:, poster:)
     expect(poster_answer).to be_valid
   end
 
@@ -15,20 +15,20 @@ RSpec.describe PosterAnswer, type: :model do
   it 'is invalid without an option' do
     poster_answer = build(:poster_answer, option: nil)
     poster_answer.valid?
-    expect(poster_answer.errors[:option]).to include("を入力してください")
+    expect(poster_answer.errors[:option]).to include('を入力してください')
   end
 
   # Question に属している
   it 'belongs to a question' do
     question = create(:question)
-    poster_answer = create(:poster_answer, question: question)
+    poster_answer = create(:poster_answer, question:)
     expect(poster_answer.question).to eq(question)
   end
 
   # Poster に属している
   it 'belongs to a poster' do
     poster = create(:poster)
-    poster_answer = create(:poster_answer, poster: poster)
+    poster_answer = create(:poster_answer, poster:)
     expect(poster_answer.poster).to eq(poster)
   end
 end

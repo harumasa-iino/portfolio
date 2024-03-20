@@ -27,7 +27,7 @@ class CompositeImagesController < ApplicationController
   end
 
   def set_posters_and_composite_images
-    @composite_images = [] 
+    @composite_images = []
     user_result = UserResult.where(session_id: session[:session_id]).order(created_at: :desc).first
     return unless user_result && @room
 

@@ -113,6 +113,7 @@ ja:
   messages:
     rooms:
       upload_success: "アップロード完了"
+      show_danger: "アクセス権限がありません"
     answers:
       create_success: "回答完了"
     composite_images:
