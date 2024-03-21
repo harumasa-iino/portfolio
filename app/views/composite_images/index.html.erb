@@ -1,5 +1,8 @@
 <h1>マッチした結果</h1>
 <div class="container">
+  <% if @composite_images.empty? %>
+    <p>好みのポスターが見つかりませんでした。ポスター追加までしばらくお待ちください。</p>
+  <% else %>
   <div class="row">
     <% @composite_images.each do |composite_image| %>
       <div class="col-md-4 mb-3 image-container">
@@ -13,4 +16,5 @@
       </div>
     <% end %>
   </div>
+  <% end %>
 </div>
