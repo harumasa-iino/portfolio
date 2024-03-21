@@ -2,5 +2,7 @@
   <h2 class="my-4"><%= @poster.title %></h2>
 
   <%= render partial: 'posters/poster', locals: { poster: @poster } %>
-  <%= link_to 'Back to Image', composite_images_path, class: 'btn btn-secondary' %>
+  <div class="col-md-4 mb-3">
+    <%= link_to '結果に戻る', composite_images_path, class: 'btn-secondary' %>
+  </div>
 </div>
