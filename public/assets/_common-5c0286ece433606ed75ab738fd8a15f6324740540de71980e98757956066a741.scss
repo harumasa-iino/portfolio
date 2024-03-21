@@ -59,8 +59,8 @@
 
 .swiper_img {
   width: 100%; /* 画像の幅を100%に設定 */
-  max-height: 600px; /* 画像の高さの上限を500pxに設定 */
-  min-height: auto; /* 高さを自動で調整してアスペクト比を保つ */
+  max-height: 500px; /* 画像の高さの上限を500pxに設定 */
+  height: auto; /* 高さを自動で調整してアスペクト比を保つ */
   object-fit: cover; /* 画像がコンテナに収まるように調整 */
 }
 

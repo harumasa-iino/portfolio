@@ -47,39 +47,34 @@
   
     /* top画像にグレーをかける*/
   .swiper-slide::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5); /* 明るいグレーのオーバーレイ */
-  z-index: 10;
-}
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5); /* グレーのオーバーレイ */
+  }
 
-.swiper_img {
-  width: 100%; /* 画像の幅を100%に設定 */
-  max-height: 600px; /* 画像の高さの上限を500pxに設定 */
-  min-height: auto; /* 高さを自動で調整してアスペクト比を保つ */
-  object-fit: cover; /* 画像がコンテナに収まるように調整 */
-}
-
-  /* ロゴの場所設定 */
-.overlay-with-logo {
-  position: absolute;
-  top: 37%; /* 中央の位置を少し下げる */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10; /* スライドの上に表示させるため */
-  pointer-events: none; /* クリックスルー可能に */
-}
+  /* top画像幅の設定 */
+  .overlay-with-logo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; /* スワイパースライドより上になるように */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none; /* オーバーレイをクリックスルー可能に */
+  }
   
-.centered-logo {
-  width: 100%; /* ロゴのサイズを大きくする */
-  height: auto; /* 高さを自動調整する */
-  pointer-events: auto; /* ロゴ自体がクリック可能に */
-}
-
+  .centered-logo {
+    max-width: 200px; /* 必要に応じて調整 */
+    pointer-events: auto; /* 必要に応じてロゴ自体と対話できるように */
+  }
+  
   body {
     background-color: #ece9e2; /* クリーム色の灰色 */
     font-family: 'dnp-shuei-mgothic-std', sans-serif; /* Noto Sans JPを適用、利用する前にGoogle Fontsからインポートが必要です */
