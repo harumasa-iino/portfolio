@@ -17,35 +17,86 @@
     </div>
   </div>
 
+  <%= link_to  new_room_path, class: 'btn btn-medium btn-arrow position-relative mt-5' do %>
+    <span class="text-uppercase">ポスターを飾ろう！</span>
+    <svg class="arrow-right position-absolute" width="18" height="20">
+      <use xlink:href="#arrow-right"></use>
+    </svg>
+  <% end %>
   
 
-  <div class="">
-    <h1>あなたの部屋に<br>
-    ぴったりなポスターを</h1>
-    <p>
-    インテリアにあったポスターや絵画を<br>
-    提案してくれるアプリです<br>
-    統一感のある部屋の作り出すために<br>
-    ポスターを選んでみよう
-    </p>
-  </div>
-
-  <%= link_to "ポスターを飾ろう！", new_room_path, class: "btn btn-primary mt-3" %>
-
-  <div class="row mt-4">
-    <div class="col-12 col-md-6 mb-3">
-      <div class="d-flex align-items-center">
-        <i class="fas fa-thin fa-filter mr-2" style="font-size: 2em;"></i>
-        <p class="mb-0">フィルターモード：デザインタイプを選択することで、好みのポスター/絵画を提案</p>
+  <section id="company-services" class="padding-large">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 pb-3">
+            <div class="icon-box d-flex align-items-center">
+              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+                <i class="fa-solid fa-camera-retro fa-icon"></i>
+              </div>
+              <div class="icon-box-content ps-3">
+                <h4 class="card-title text-uppercase text-dark">お部屋の写真をアップロード</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 pb-3">
+            <div class="icon-box d-flex align-items-center">
+              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+                <i class="fa-solid fa-magnifying-glass fa-icon"></i>
+              </div>
+              <div class="icon-box-content ps-3">
+                <h4 class="card-title text-uppercase text-dark">インテリアに合ったポスターを提案</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 pb-3">
+            <div class="icon-box d-flex align-items-center">
+              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+                <i class="fa-regular fa-image fa-icon"></i>
+              </div>
+              <div class="icon-box-content ps-3">
+                <h4 class="card-title text-uppercase text-dark">部屋の雰囲気とのマッチングを確認</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 pb-3">
+            <div class="icon-box d-flex align-items-center">
+              <div class="icon-box-icon pt-3 pe-3 pb-3 ps-3">
+                <i class="fa-regular fa-heart fa-icon"></i>
+              </div>
+              <div class="icon-box-content ps-3">
+                <h4 class="card-title text-uppercase text-dark">お気に入りのポスターを保存</h4>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-12 col-md-6 mb-3">
-      <div class="d-flex align-items-center">
-        <i class="fas fa-thin fa-robot mr-2" style="font-size: 2em;"></i>
-        <p class="mb-0">レコメンドモード：部屋のインテリアに合ったポスター/絵画を色彩アルゴリズムを用いて提案</p>
+    </section>
+
+    <section id="about-us">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-between g-5">
+          <div class="col-lg-6">
+            <div class="image-holder mb-4 jarallax">
+              <%= image_tag("1_copy.jpg", alt:"single", class:"img-fluid jarallax-img") %>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="detail p-5">
+              <div class="display-header">
+                <h2 class="display-2 text-uppercase text-dark pb-2">部屋に彩りを</h2>
+                <p class="pb-3">このアプリは、お部屋のインテリアにぴったりなポスターや絵画を見つけるお手伝いをします。</p>
+                <p>自のマッチングシステムを用いて空間に合わせたアート作品を提案することで、統一感のある理想の部屋作りをサポート。あなたの部屋を、もっと素敵な空間に変えてみませんか？</p>                    
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+    <div class="padding-small">
+      <%= link_to  new_room_path, class: 'btn btn-medium btn-arrow position-relative mt-5' do %>
+        <span class="text-uppercase">ポスターを飾ろう！</span>
+        <svg class="arrow-right position-absolute" width="18" height="20">
+          <use xlink:href="#arrow-right"></use>
+        </svg>
+      <% end %>
     </div>
-  </div>
-</div>
-
-
