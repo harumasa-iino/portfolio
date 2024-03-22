@@ -47,7 +47,7 @@
   */
   
     /* top画像にグレーのオーバーレイ*/
- .swiper-slide::after {
+/*  .swiper-slide::after {
   content: '';
   position: absolute;
   top: 0;
@@ -57,6 +57,7 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 10;
 } 
+*/
 
 .swiper_img {
   width: 100%; /* 画像の幅を100%に設定 */
