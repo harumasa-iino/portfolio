@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: password
-  host: db
+  username: admin
+  password: Password
+  host: database-1.cryciuei40ub.ap-northeast-1.rds.amazonaws.com
 
 development:
   <<: *default
@@ -51,5 +51,3 @@ test:
 production:
   <<: *default
   database: portfolio_production
-  username: portfolio
-  password: <%= ENV["PORTFOLIO_DATABASE_PASSWORD"] %>
