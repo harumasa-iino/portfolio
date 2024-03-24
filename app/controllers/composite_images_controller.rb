@@ -46,7 +46,7 @@ class CompositeImagesController < ApplicationController
     return unless user_result
 
     @poster = Poster.joins(:poster_results).find_by(poster_results: { category_id: user_result.category_id })
-    @room = Room.find_by(session_id:)
+    @room = Room.where(session_id:).last
   end
 
   def set_composite_image
