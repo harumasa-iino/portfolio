@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class InteriorUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+
+  process :resize_to_fit
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -22,6 +24,20 @@ class InteriorUploader < CarrierWave::Uploader::Base
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
+
+  def resize_to_fit
+    manipulate! do |img|
+      if img.width >= img.height
+        # 横長の場合は900x1200以上にリサイズ
+        img.resize "900x1200^"
+      else
+        # 縦長の場合は1200x900にリサイズ
+        img.resize "1200x900^"
+      end
+      img = yield(img) if block_given?
+      img
+    end
+  end
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
