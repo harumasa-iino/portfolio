@@ -53,15 +53,8 @@ SEO対策を行い「ポスター 部屋 おしゃれ」などで検索したユ
 - ファイルアップロード: CarrierWave
 - 認証: Google APIを利用したOAuth認証
 - 認証：Devise
-
-## ■　　デプロイメント
-
-アプリケーションはAWS上で動作しており、以下のサービスを使用しています：
-
-- コンピューティング：Amazon EC2
-- データベース：Amazon RDS
-- 静的ファイルホスティング：Amazon S3
-- CI/CD：GitHub Actions（ビルドとテスト）、AWS CodeDeploy（デプロイメント）
+- デプロイメント:AWS
+- CI/CD：GitHub Actions
 
 ## 画面遷移図
 https://www.figma.com/file/yIQoFFfZWzQS7DEjzxoHnt/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=whiteboard&node-id=0%3A1&t=57l0QB5S0kEpsJDx-1
