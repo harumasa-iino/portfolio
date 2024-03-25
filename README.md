@@ -26,33 +26,41 @@ SEO対策を行い「ポスター 部屋 おしゃれ」などで検索したユ
 
 ## ■ サービスの差別化ポイント・推しポイント 
 
-家具の配置アプリはあるが、絵画やポスターに特化したアプリはまだない。
+家具の配置アプリはあるが、絵画やポスターに特化したアプリはまだないため。
 
-## ■ 機能候補 MVP時
+## ■ 主な機能
+- [x] 部屋の写真アップロード機能
+- [x] ポスター/絵画データベース
+- [x] ポスターフィルター機能
+- [x] 部屋の写真とポスターの合成画像表示
+- [x] 会員登録
+- [x] 好みの合成画像を保存
+- [x] ポスターの購入導線
+- [ ] 部屋の色彩認識
+- [ ] ポスターの色彩認識
+- [ ] 色合いでのマッチング機能
+- [ ] 好みのポスターをARで確認
 
-- 部屋の写真アップロード機能
-- 壁検出機能
-- ポスター/絵画データベース
-- ポスター検索・フィルター機能
-- ポスター/絵画表示・配置機能
+## ■ 使用技術
+- Rubyバージョン: 3.1.4
+- Railsバージョン: 7.0.8
+- フレームワーク: Ruby on Rails
+- コンテナ化: Docker、Docker Compose
+- データベース: MySQL（開発環境）、Amazon RDS for MySQL（本番環境）
+- テストフレームワーク：RSpec
+- 画像処理: MiniMagick（画像合成や加工）
+- ファイルアップロード: CarrierWave
+- 認証: Google APIを利用したOAuth認証
+- 認証：Devise
 
-本リリース
+## ■　　デプロイメント
 
-- 購入リンク付加
-- 部屋の色認識機能
-- ポスターの色認識機能
-- 色合いマッチングアルゴリズム
-- AR機能で実際の部屋にポスターをマッピング
+アプリケーションはAWS上で動作しており、以下のサービスを使用しています：
 
-## ■ 機能の実装方針予定
-
-- Google Vision AIを使用して壁を検出
-
-- Canvasを使ってアップロード画像に絵画データを合成
-
-- 部屋の色認識機能。ポスターの色認識機能もVision AIを使用
-
-- 実際の部屋にポスターをマッピングするのはAR.jsを使用
+- コンピューティング：Amazon EC2
+- データベース：Amazon RDS
+- 静的ファイルホスティング：Amazon S3
+- CI/CD：GitHub Actions（ビルドとテスト）、AWS CodeDeploy（デプロイメント）
 
 ## 画面遷移図
 https://www.figma.com/file/yIQoFFfZWzQS7DEjzxoHnt/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=whiteboard&node-id=0%3A1&t=57l0QB5S0kEpsJDx-1
@@ -61,4 +69,4 @@ https://www.figma.com/file/yIQoFFfZWzQS7DEjzxoHnt/%E7%94%BB%E9%9D%A2%E9%81%B7%E7
 
 ## ER図
 https://app.diagrams.net/#G1CY3KqoKHvMPbawyjoVnzfd7X0p63g0h_
-![Alt text](image.png)
+<img width="811" alt="ER図" src="https://github.com/harumasa-iino/portfolio/assets/139933050/77959d82-4d22-4152-a28f-bf47ebac0e0d">
