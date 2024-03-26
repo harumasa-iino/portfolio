@@ -49,14 +49,15 @@ jobs:
          chmod 600 private_key
 
          ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key << 'EOF'
-            # Pumaプロセスを名前で検索し、終了させる
-            pkill -SIGTERM puma
-            
-            # Pumaを指定の設定で再起動する
             cd /var/www/portfolio
             git fetch --prune
             git checkout main
             git pull origin main
+            
+            # Pumaプロセスを名前で検索し、終了させる
+            pkill -SIGTERM puma || true
+            
+            # Pumaを指定の設定で再起動する
             bundle exec puma -C config/puma/production.rb -e production
             
             # Nginxを再起動する
