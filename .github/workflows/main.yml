@@ -47,7 +47,22 @@ jobs:
          # SSH接続して、git pullする
          echo "${{ secrets.PRIVATE_KEY }}" > private_key
          chmod 600 private_key
-         ssh -vvv -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd /var/www/portfolio && git fetch --prune && git checkout main && git pull origin main"
+
+         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key << 'EOF'
+            # Pumaプロセスを名前で検索し、終了させる
+            pkill -SIGTERM puma
+            
+            # Pumaを指定の設定で再起動する
+            cd /var/www/portfolio
+            git fetch --prune
+            git checkout main
+            git pull origin main
+            bundle exec puma -C config/puma/production.rb -e production
+            
+            # Nginxを再起動する
+            sudo nginx -s stop
+            sudo service nginx start
+          EOF
 
          # SSHのセキュリティグループを閉じる
          aws ec2 revoke-security-group-ingress --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
