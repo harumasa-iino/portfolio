@@ -41,29 +41,13 @@ jobs:
      - name: Deploy
        run: |
 
-         # SSHのセキュリティグループを開放する
+　　　　　　　　　　　　　　　　　 # SSHのセキュリティグループを開放する
          aws ec2 authorize-security-group-ingress --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
 
          # SSH接続して、git pullする
          echo "${{ secrets.PRIVATE_KEY }}" > private_key
          chmod 600 private_key
-
-         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key << 'EOF'
-            cd /var/www/portfolio
-            git fetch --prune
-            git checkout main
-            git pull origin main
-            
-            # Pumaプロセスを名前で検索し、終了させる
-            pkill -SIGTERM puma || true
-            
-            # Pumaを指定の設定で再起動する
-            bundle exec puma -C config/puma/production.rb -e production
-            
-            # Nginxを再起動する
-            sudo nginx -s stop
-            sudo service nginx start
-          EOF
+         ssh -vvv -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd /var/www/portfolio && git fetch --prune && git checkout main && git pull origin main"
 
          # SSHのセキュリティグループを閉じる
          aws ec2 revoke-security-group-ingress --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
