@@ -86,3 +86,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+
+# SEO
+gem 'meta-tags'
+gem 'sitemap_generator'
