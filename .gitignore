@@ -25,6 +25,7 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 /public/uploads/*
+/public/sitemap.xml.gz
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
