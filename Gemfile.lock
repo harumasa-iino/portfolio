@@ -109,6 +109,7 @@ GEM
     devise-i18n (1.12.0)
       devise (>= 4.9.0)
     diff-lcs (1.5.1)
+    docile (1.4.0)
     dotenv (3.0.2)
     dotenv-rails (3.0.2)
       dotenv (= 3.0.2)
@@ -339,6 +340,12 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -409,6 +416,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   sassc-rails
+  simplecov
   sprockets-rails
   stimulus-rails
   turbo-rails

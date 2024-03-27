@@ -37,7 +37,7 @@ class CompositeImagesController < ApplicationController
       poster_path = poster.image.path
       composite_image = CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id)
       composite_image
-    end.uniq { |ci| ci.poster_id } # Ensure unique poster_id for each composite_image
+    end.uniq { |ci| ci.poster_id }
   end
 
   def set_room_and_poster

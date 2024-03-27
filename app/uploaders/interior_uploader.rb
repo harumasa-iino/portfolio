@@ -29,10 +29,10 @@ class InteriorUploader < CarrierWave::Uploader::Base
     manipulate! do |img|
       if img.width >= img.height
         # 横長の場合は900x1200以上にリサイズ
-        img.resize "900x1200^"
+        img.resize '900x1200^'
       else
         # 縦長の場合は1200x900にリサイズ
-        img.resize "1200x900^"
+        img.resize '1200x900^'
       end
       img = yield(img) if block_given?
       img
