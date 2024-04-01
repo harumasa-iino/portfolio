@@ -76,6 +76,7 @@ end
 # Image
 gem 'carrierwave', '2.2.2'
 gem 'mini_magick'
+gem 'google-cloud-vision'
 
 # Configuration
 gem 'dotenv-rails'
