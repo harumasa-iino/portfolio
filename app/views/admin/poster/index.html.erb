@@ -1,0 +1,13 @@
+<div class="container">	
+  <h2 class="my-4">Poster一覧</h2>	
+
+  <div class="row">	
+    <% @posters.each do |poster| %>	
+      <div class="col-md-2 mb-3">	
+        <%= link_to image_tag(poster.image.url, class: 'img-fluid', size: "200x100"), admin_poster_path(poster) %>	
+      </div>	
+    <% end %>	
+  </div>	
+  <%= link_to "ポスターをアップロードする", new_admin_poster_path, class: "btn btn-primary mt-3" %>	
+  <%= @pattern_id %>	
+</div>	
