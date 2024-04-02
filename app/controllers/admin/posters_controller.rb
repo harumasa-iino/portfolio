@@ -23,6 +23,12 @@ class Admin::PostersController < Admin::BaseController
     @pattern = @poster.poster_answers.extract_bit_pattern(@poster.id)
   end
 
+  def register_color
+    @poster = Poster.find(params[:id])
+    save_colors(@poster)
+    redirect_to admin_poster_path(@poster), notice: t('messages.rooms.register_color_success')
+  end
+
   def edit; end
 
   def update
@@ -39,6 +45,17 @@ class Admin::PostersController < Admin::BaseController
   end
 
   private
+
+  def save_colors(poster)
+    relative_path = poster.image.url.sub(/^\//, '')
+    image_path = Rails.root.join('public', relative_path).to_s
+    colors = VisionService.detect_colors(image_path)
+
+    colors.each do |color_data|
+      color = Color.find_or_create_by(hex: color_data[:hex], rgb: color_data[:rgb])
+      PosterColor.create(poster: poster, color: color, pixel_fraction: color_data[:pixel_fraction])
+    end
+  end
 
   def set_poster
     @poster = Poster.find(params[:id])

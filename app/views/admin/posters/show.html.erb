@@ -1,0 +1,15 @@
+<div class="container">
+  <h2 class="my-4"><%= @poster.title %></h2>
+
+  <%= render partial: 'posters/poster', locals: { poster: @poster } %>
+  
+  <%= link_to 'ポスター一覧へ', admin_posters_path, class: 'btn btn-secondary' %>
+  <%= link_to '編集', edit_admin_poster_path(@poster), class: 'btn btn-secondary' %>
+  <%= link_to '削除', admin_poster_path(@poster), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: "削除しますか" } %>
+    <% unless @poster_answer.nil? || !@poster_answer.registered?(@poster.id) %>
+      <%= link_to 'ポスターカテゴリの編集', edit_multiple_admin_poster_poster_answers_path(@poster, @poster_answer), class: 'btn btn-secondary' %>
+    <% else %>
+      <%= link_to 'ポスターカテゴリの登録', new_admin_poster_poster_answer_path(@poster), class: 'btn btn-secondary' %>
+    <% end %>
+  <%= link_to '色情報を登録', register_color_admin_poster_path(@poster), data:{ turbo_method: :post}, class: 'btn btn-primary' %>
+</div>
