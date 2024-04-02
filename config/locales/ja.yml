@@ -114,6 +114,7 @@ ja:
     rooms:
       upload_success: "アップロード完了"
       show_danger: "アクセス権限がありません"
+      register_color_success: "色情報が正常に登録されました"
     answers:
       create_success: "回答完了"
     composite_images:

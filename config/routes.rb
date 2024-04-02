@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboards#index'
     resources :posters do
+      post 'register_color', on: :member
       resources :poster_answers, only: %i[new create edit update] do
         collection do
           get 'edit_multiple'
