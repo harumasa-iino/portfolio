@@ -13,16 +13,16 @@
         <%= link_to question_path(1), class: "card-body text-center" do %>
           <i class="fas fa-thin fa-filter mr-2" style="font-size: 3em;"></i>
           <h5 class="card-title">フィルターモード</h5>
-          <p class="card-text">好みのデザインタイプを選択</p>
+          <p class="card-text">好みのデザインタイプを選択してマッチング</p>
         <% end %>
       </div>
     </div>
     <div class="col mb-5">
       <div class="card btn-outline-info">
-        <%= link_to "#", class: "card-body text-center" do %>
+        <%= link_to composite_images_path, class: "card-body text-center" do %>
           <i class="fas fa-thin fa-robot mr-2" style="font-size: 3em;"></i>
           <h5 class="card-title">レコメンドモード</h5>
-          <p class="card-text">(COMING SOON...)</p>
+          <p class="card-text">インテリアの色彩から自動マッチング</p>
         <% end %>
       </div>
     </div>

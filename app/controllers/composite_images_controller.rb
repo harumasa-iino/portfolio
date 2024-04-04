@@ -1,9 +1,28 @@
 class CompositeImagesController < ApplicationController
-  before_action :set_room_and_poster, only: %i[index show]
+  before_action :set_room, only: %i[index show]
   before_action :set_composite_image, only: %i[show save]
 
   def index
-    set_posters_and_composite_images
+    referrer_path = URI(request.referrer || '').path
+    # 経由別にマッチングロジックを使用、経由していない場合はsessionを使用
+    if referrer_path.include?('questions') || referrer_path.include?('rooms')
+      if referrer_path.include?('questions')
+        matched_posters = FilterMatchingService.new(session[:session_id]).match_posters
+      elsif referrer_path.include?('rooms')
+        matched_posters = ColorMatchingService.new(@room.id).match_posters
+      end
+  
+      # ポスターのIDをセッションに保存
+      session[:matched_poster_ids] = matched_posters.map(&:id)
+  
+      @composite_images = matched_posters.map { |poster| create_composite_image(poster) }.uniq { |ci| ci.poster_id }
+    else
+      # セッションからポスターIDを取得し、それを基にcomposite_imagesを再構築
+      matched_poster_ids = session[:matched_poster_ids] || []
+      matched_posters = Poster.find(matched_poster_ids)
+  
+      @composite_images = matched_posters.map { |poster| create_composite_image(poster) }.uniq { |ci| ci.poster_id }
+    end
   end
 
   def show; end
@@ -23,33 +42,16 @@ class CompositeImagesController < ApplicationController
 
   def set_room
     session_id = session[:session_id]
-    @room = Room.find_by(session_id:)
-  end
-
-  def set_posters_and_composite_images
-    @composite_images = []
-    user_result = UserResult.where(session_id: session[:session_id]).order(created_at: :desc).first
-    return unless user_result && @room
-
-    @posters = Poster.joins(:poster_results).where(poster_results: { category_id: user_result.category_id })
-    @composite_images = @posters.map do |poster|
-      wallpaper_path = @room.image.path
-      poster_path = poster.image.path
-      composite_image = CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id)
-      composite_image
-    end.uniq { |ci| ci.poster_id }
-  end
-
-  def set_room_and_poster
-    session_id = session[:session_id]
-    user_result = UserResult.where(session_id:).order(created_at: :desc).first
-    return unless user_result
-
-    @poster = Poster.joins(:poster_results).find_by(poster_results: { category_id: user_result.category_id })
-    @room = Room.where(session_id:).last
+    @room = Room.find_by(session_id: session_id)
   end
 
   def set_composite_image
     @composite_image = CompositeImage.find(params[:id])
+  end
+
+  def create_composite_image(poster)
+    wallpaper_path = @room.image.path
+    poster_path = poster.image.path
+    CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id)
   end
 end
