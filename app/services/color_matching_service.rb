@@ -21,9 +21,9 @@ class ColorMatchingService
     def calculate_match_score(room_colors, poster_colors)
       room_colors.sum do |room_color|
         poster_colors.sum do |poster_color|
-          room_hue = ColorConversion.rgb_to_hue(*ColorConversion.hex_to_rgb(room_color.hex))
-          poster_hue = ColorConversion.rgb_to_hue(*ColorConversion.hex_to_rgb(poster_color.hex))
-          ColorMatching.harmony_score(room_hue, poster_hue) * room_color.pixel_fraction
+          room_hue = Conversion.rgb_to_hue(*Conversion.hex_to_rgb(room_color.hex))
+          poster_hue = Conversion.rgb_to_hue(*Conversion.hex_to_rgb(poster_color.hex))
+          Matching.harmony_score(room_hue, poster_hue) * room_color.pixel_fraction
         end
       end
     end

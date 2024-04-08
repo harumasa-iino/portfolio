@@ -1,5 +1,5 @@
-module Color
-  module ColorMatching
+module ColorTools
+  module Matching
     def self.harmony_score(hue1, hue2)
       diff = (hue1 - hue2).abs % 360
       diff = 360 - diff if diff > 180
