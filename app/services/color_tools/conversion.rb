@@ -1,5 +1,5 @@
-module Color
-  module ColorConversion
+module ColorTools
+  module Conversion
     def self.hex_to_rgb(hex)
       hex = hex.gsub('#', '')
       hex.scan(/../).map(&:hex)
@@ -14,7 +14,7 @@ module Color
       delta = max - min
   
       return 0 if delta == 0
-  
+
       hue = case max
             when r
               (g - b) / delta % 6 * 60
