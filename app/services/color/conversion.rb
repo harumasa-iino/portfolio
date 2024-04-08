@@ -1,4 +1,5 @@
-module ColorConversion
+module Color
+  module ColorConversion
     def self.hex_to_rgb(hex)
       hex = hex.gsub('#', '')
       hex.scan(/../).map(&:hex)
@@ -26,4 +27,4 @@ module ColorConversion
       hue.negative? ? hue + 360 : hue
     end
   end
-  
+end  
