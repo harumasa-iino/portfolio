@@ -117,6 +117,9 @@ ja:
       register_color_success: "色情報が正常に登録されました"
     answers:
       create_success: "回答完了"
+    users:
+      destroy_success: "アカウントが正常に削除されました。"
+      destroy_danger: "他のユーザーのアカウントは削除できません。"
     composite_images:
       save_success: "保存しました"
     record_invalid: "レコードが無効です: %{errors}"

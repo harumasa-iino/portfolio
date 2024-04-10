@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
   def show
     return if @room.session_id == session[:session_id]
 
-    redirect_to root_path, notice: t('messages.rooms.show_danger')
+    redirect_to root_path, alert: t('messages.rooms.show_danger')
   end
 
   def create
