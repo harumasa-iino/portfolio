@@ -7,7 +7,7 @@ class CompositeImage < ApplicationRecord
 
   require 'mini_magick'
 
-  def self.create_composite(room_id, wallpaper_path, poster_path, poster_id, poster_width: 300, poster_height: 400)
+  def self.create_composite(room_id, wallpaper_path, poster_path, poster_id, poster_width, poster_height)
     wallpaper = MiniMagick::Image.open(wallpaper_path)
     poster = MiniMagick::Image.open(poster_path)
 
