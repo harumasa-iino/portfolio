@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
   resources :posters, only: [:show]
-  resources :users, only: [:show]
+  resources :users, only: %i[show destroy]
   namespace :admin do
     root to: 'dashboards#index'
     resources :posters do

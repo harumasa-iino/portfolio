@@ -18,3 +18,5 @@
     </div>
   <% end %>
 
+<%= link_to 'アカウントを削除', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: 'アカウントを削除してもよろしいですか？' }, class: 'btn btn-danger' %>
+

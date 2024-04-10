@@ -50,6 +50,7 @@ SEO対策を行い「ポスター 部屋 おしゃれ」などで検索したユ
 - データベース: MySQL（開発環境）、Amazon RDS for MySQL（本番環境）
 - テストフレームワーク：RSpec
 - 画像処理: MiniMagick（画像合成や加工）
+- 画像解析: Google Vision API
 - ファイルアップロード: CarrierWave
 - 認証: Google APIを利用したOAuth認証
 - 認証：Devise
