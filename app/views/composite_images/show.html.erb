@@ -1,11 +1,13 @@
 <div class="col-md-4 mb-3 image-container">
-    <%= link_to image_tag(@composite_image.composite_image.url, class: 'img-fluid'), poster_path(@composite_image.poster_id),class: 'img-fluid' %>
+    <%= image_tag(@composite_image.composite_image.url, class: 'img-fluid') %>
     <div class="source-text">
-    画像出典：
-      <%= link_to "Amazon.co.jp", @composite_image.poster.url, target: "_blank" %>
+      画像出典： <%= link_to "Amazon.co.jp", @composite_image.poster.url, target: "_blank" %>
     </div>
   </div>
   <div class="container">
+    <div class="d-flex justify-content-center">
+      <%= link_to  'ポスターの詳細をみる',poster_path(@composite_image.poster_id), class: "btn btn-primary mt-3 btn-lg w-100" %>
+    </div>
     <div class="d-flex justify-content-center">
       <%= link_to 'マイページに保存する', save_composite_image_path(@composite_image), class: "btn btn-primary mt-3 btn-lg w-100", data: { "turbo-method": :post } %>
     </div>
