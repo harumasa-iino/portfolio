@@ -52,6 +52,6 @@ class CompositeImagesController < ApplicationController
   def create_composite_image(poster)
     wallpaper_path = @room.image.path
     poster_path = poster.image.path
-    CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id)
+    CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id, poster.width, poster.height)
   end
 end
