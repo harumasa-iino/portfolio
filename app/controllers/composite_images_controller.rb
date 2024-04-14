@@ -42,7 +42,7 @@ class CompositeImagesController < ApplicationController
 
   def set_room
     session_id = session[:session_id]
-    @room = Room.find_by(session_id: session_id)
+    @room = Room.where(session_id: session_id).order(:created_at).last
   end
 
   def set_composite_image
@@ -52,6 +52,6 @@ class CompositeImagesController < ApplicationController
   def create_composite_image(poster)
     wallpaper_path = @room.image.path
     poster_path = poster.image.path
-    CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id, poster.width, poster.height)
+    CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id, poster.width, poster.height, @room.x_coordinate, @room.y_coordinate)
   end
 end
