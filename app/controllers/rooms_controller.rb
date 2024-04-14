@@ -28,7 +28,14 @@ class RoomsController < ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+    @room = Room.find(params[:id])
+    if @room.update(room_params)
+      redirect_to @room,  notice: t('messages.rooms.update_success')
+    else
+      render :edit
+    end
+  end
 
   def destroy; end
 
@@ -50,6 +57,6 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:image, :image_cache)
+    params.require(:room).permit(:image, :image_cache, :x_coordinate, :y_coordinate)
   end
 end

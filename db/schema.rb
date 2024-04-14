@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_13_125407) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_14_054038) do
   create_table "answers", charset: "utf8mb4", force: :cascade do |t|
     t.integer "option"
     t.bigint "question_id", null: false
@@ -117,8 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_13_125407) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "session_id"
-    t.integer "x_coordinate", default: 50
-    t.integer "y_coordinate", default: 50
+    t.float "x_coordinate", default: 50.0
+    t.float "y_coordinate", default: 50.0
   end
 
   create_table "sns_credentials", charset: "utf8mb4", force: :cascade do |t|
