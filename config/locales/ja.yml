@@ -113,6 +113,7 @@ ja:
   messages:
     rooms:
       upload_success: "アップロード完了"
+      update_success: "ポスターの配置を変更しました"
       show_danger: "アクセス権限がありません"
       register_color_success: "色情報が正常に登録されました"
     answers:
