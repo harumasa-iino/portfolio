@@ -39,3 +39,27 @@ function updateCoordinates(frame) {
     document.getElementById('poster_x').value = centerX.toFixed(2);
     document.getElementById('poster_y').value = centerY.toFixed(2);
 }
+
+frame.addEventListener('touchstart', function (e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const rect = frame.getBoundingClientRect();
+  offsetX = touch.clientX - (rect.left + window.scrollX + rect.width / 2);
+  offsetY = touch.clientY - (rect.top + window.scrollY + rect.height / 2);
+
+  document.addEventListener('touchmove', moveDragTouch, false);
+  document.addEventListener('touchend', stopDragTouch, false);
+}, false);
+
+function moveDragTouch(e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  frame.style.left = (touch.clientX - offsetX - container.getBoundingClientRect().left - frame.offsetWidth / 2) + 'px';
+  frame.style.top = (touch.clientY - offsetY - container.getBoundingClientRect().top - frame.offsetHeight / 2) + 'px';
+}
+
+function stopDragTouch(e) {
+  document.removeEventListener('touchmove', moveDragTouch, false);
+  document.removeEventListener('touchend', stopDragTouch, false);
+  updateCoordinates(frame);
+}
