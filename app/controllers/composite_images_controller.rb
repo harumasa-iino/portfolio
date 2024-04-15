@@ -13,9 +13,9 @@ class CompositeImagesController < ApplicationController
       end
   
       # ポスターのIDをセッションに保存
-      session[:matched_poster_ids] = matched_posters.map(&:id)
+      session[:matched_poster_ids] = matched_posters.map { |mp| mp[:poster].id }
   
-      @composite_images = matched_posters.map { |poster| create_composite_image(poster) }.uniq { |ci| ci.poster_id }
+      @composite_images = matched_posters.map { |mp| create_composite_image(mp[:poster]) }.uniq { |ci| ci.poster_id }
     else
       # セッションからポスターIDを取得し、それを基にcomposite_imagesを再構築
       matched_poster_ids = session[:matched_poster_ids] || []

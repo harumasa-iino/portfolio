@@ -4,12 +4,12 @@ class ColorMatchingService
     end
   
     def match_posters
-      room_colors = @room.colors
-      posters = Poster.includes(:colors)
+      room_colors = RoomColor.includes(:color).where(room_id: @room.id)
+      posters = Poster.includes(poster_colors: :color)
       matched_posters = []
   
       posters.each do |poster|
-        total_score = calculate_match_score(room_colors, poster.colors)
+        total_score = calculate_match_score(room_colors, poster.poster_colors)
         matched_posters << { poster: poster, score: total_score } if total_score > 50
       end
   
@@ -21,9 +21,9 @@ class ColorMatchingService
     def calculate_match_score(room_colors, poster_colors)
       room_colors.sum do |room_color|
         poster_colors.sum do |poster_color|
-          room_hue = Conversion.rgb_to_hue(*Conversion.hex_to_rgb(room_color.hex))
-          poster_hue = Conversion.rgb_to_hue(*Conversion.hex_to_rgb(poster_color.hex))
-          Matching.harmony_score(room_hue, poster_hue) * room_color.pixel_fraction
+          room_hue = ColorTools::Conversion.rgb_to_hue(*ColorTools::Conversion.hex_to_rgb(room_color.color.hex))
+          poster_hue = ColorTools::Conversion.rgb_to_hue(*ColorTools::Conversion.hex_to_rgb(poster_color.color.hex))
+          ColorTools::Matching.harmony_score(room_hue, poster_hue) * room_color.pixel_fraction
         end
       end
     end
