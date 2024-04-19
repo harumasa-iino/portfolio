@@ -181,6 +181,9 @@ GEM
       googleapis-common-protos-types (~> 1.0)
     hashie (5.0.0)
     high_voltage (3.1.2)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -460,6 +463,7 @@ DEPENDENCIES
   font-awesome-rails
   google-cloud-vision
   high_voltage
+  httparty
   importmap-rails
   jquery-rails
   jsbundling-rails
