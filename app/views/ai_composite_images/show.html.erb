@@ -1,1 +1,4 @@
-<%= image_tag(@composite_image.composite_image.url, class: 'img-fluid') %>
+<%= image_tag(@composite_image['composite_image']['url'], class: 'img-fluid') %>
+<div class="d-flex justify-content-center">
+  <%= link_to 'マッチ結果に戻る', ai_composite_images_path, class: "btn-primary mt-3 btn-lg w-100" %>
+</div>
