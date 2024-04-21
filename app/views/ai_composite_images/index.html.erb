@@ -1,17 +1,26 @@
-<h1>画像生成</h1>
-<p>文章を入力して画像を生成してみよう！</p>
+<div class="container">
+<h1>AI Vision</h1>
+<p>AIによるポスター画像を生成してインテリアとの相性を見てみよう！<br>
+画像からインテリアとの合成結果も確認。　※画像生成には10秒ほどかかります</p>
 
 <%= form_with url: ai_composite_images_path, method: :post, model: nil, local: true do |form| %>
-  <%= submit_tag '生成' %>
+  <button type="submit" class="btn btn-medium btn-arrow position-relative mt-5">
+    <span class="text-uppercase">AI画像を生成</span>
+    <svg class="arrow-right position-absolute" width="18" height="15">
+      <use xlink:href="#arrow-right"></use>
+    </svg>
+  </button>
 <% end %>
 
-<% if @error %>
-  <p><%= @error %></p>
-<% elsif @ai_images %>
-  <img src="<%= @ai_images %>" alt="Generated Image">
-<% else %>
-  <p>まだ画像が出力されていません。</p>
-<% end %>
-
-<%= image_tag(@ai_image.image.url) %>
-<%= link_to ai_composite_image_path(@composite_image) %>
+  <% if @ai_image.blank? %>
+    <p>まだ画像が出力されていません。</p>
+  <% else %>
+    <div class="row">
+      <div class="col-md-4 mb-3 image-container">
+        <%= link_to ai_composite_image_path(@composite_image) do %>
+          <%= image_tag @ai_image.image.url, class: 'img-fluid' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

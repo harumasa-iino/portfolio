@@ -2,7 +2,7 @@ class AiCompositeImagesController < ApplicationController
   before_action :set_room, only: %i[index show create]
 
   def index
-    @ai_image = AiPoster.find_by(id: 1)
+    @ai_image = AiPoster.where(session_id: @session_id).last
     @error = session[:error]
     create_composite_image(@ai_image)
   end
@@ -30,8 +30,7 @@ class AiCompositeImagesController < ApplicationController
   end
 
   def show
-    @ai_image = AiPoster.find_by(id: 1)
-    @composite_image = create_composite_image(@ai_image)
+    @composite_image = session[:ai_image]
   end
 
   private
