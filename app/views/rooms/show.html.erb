@@ -15,6 +15,7 @@
         <p class="card-text stylish-text">ポスターの配置位置を確認したら好みのポスターのマッチング方法を選んでください</p>
       </div>
   </div>
+  <h2>ポスターマッチングオプション</h2>
   <div class="row justify-content-between">
     <div class="col mb-5">
       <div class="card stylish-card">
@@ -35,8 +36,20 @@
       </div>
     </div>
   </div>
+  <h2>AIジェネレーターオプション</h2>
+  <div class="row justify-content-between">
+    <div class="col md-5">
+      <div class="card stylish-card">
+        <%= link_to "#", class: "card-body text-center" do %>
+          <i class="fas fa-magic ai-icon" style="font-size: 4em; color: #6f42c1;"></i>
+          <h5 class="card-title stylish-title">AIVision</h5>
+          <p class="card-text stylish-text">AIがランダムでポスターを提案します</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div class="d-grid gap-2 d-md-block mb-4">
-    <%= link_to "別の写真をアップロードする", new_room_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %>
+    <%= link_to "別の写真をアップロードする", new_room_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm btn-margin" %>
   </div>
   <% else %>
     <p>画像がアップロードされていません。再試行してください</p>
