@@ -7,15 +7,14 @@ class CompositeImagesController < ApplicationController
     # 経由別にマッチングロジックを使用、経由していない場合はsessionを使用
     if referrer_path.include?('questions') || referrer_path.include?('rooms')
       if referrer_path.include?('questions')
-        matched_posters = FilterMatchingService.new(session[:session_id]).match_posters
+        matched_posters = FilterMatchingService.new(session[:session_id]).match_posters.uniq
       elsif referrer_path.include?('rooms')
         matched_posters = ColorMatchingService.new(@room.id).match_posters
       end
-  
+
       # ポスターのIDをセッションに保存
-      session[:matched_poster_ids] = matched_posters.map { |mp| mp[:poster].id }
-  
-      @composite_images = matched_posters.map { |mp| create_composite_image(mp[:poster]) }.uniq { |ci| ci.poster_id }
+      session[:matched_poster_ids] = matched_posters.map(&:id)
+      @composite_images = matched_posters.map { |poster| create_composite_image(poster) }.uniq { |ci| ci.poster_id }
     else
       # セッションからポスターIDを取得し、それを基にcomposite_imagesを再構築
       matched_poster_ids = session[:matched_poster_ids] || []

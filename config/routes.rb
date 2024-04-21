@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post 'save'
     end
   end
+  resources :ai_composite_images, only: %i[index show create]
   resources :posters, only: [:show]
   resources :users, only: %i[show destroy]
   namespace :admin do

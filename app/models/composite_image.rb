@@ -2,7 +2,7 @@ class CompositeImage < ApplicationRecord
   mount_uploader :composite_image, CompositeImageUploader
   belongs_to :room
   belongs_to :user, optional: true
-  belongs_to :poster
+  belongs_to :poster, optional: true
   validates :room_id, :composite_image, presence: true
 
   require 'mini_magick'

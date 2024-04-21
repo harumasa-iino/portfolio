@@ -1,0 +1,17 @@
+<h1>画像生成</h1>
+<p>文章を入力して画像を生成してみよう！</p>
+
+<%= form_with url: ai_composite_images_path, method: :post, model: nil, local: true do |form| %>
+  <%= submit_tag '生成' %>
+<% end %>
+
+<% if @error %>
+  <p><%= @error %></p>
+<% elsif @ai_images %>
+  <img src="<%= @ai_images %>" alt="Generated Image">
+<% else %>
+  <p>まだ画像が出力されていません。</p>
+<% end %>
+
+<%= image_tag(@ai_image.image.url) %>
+<%= link_to ai_composite_image_path(@composite_image) %>
