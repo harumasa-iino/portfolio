@@ -13,7 +13,7 @@ class CompositeImagesController < ApplicationController
       end
 
       # ポスターのIDをセッションに保存
-      session[:matched_poster_ids] = matched_posters.map(&:id)
+      session[:matched_poster_ids] = matched_posters.map { |mp| mp[:poster].id }
       @composite_images = matched_posters.map { |poster| create_composite_image(poster) }.uniq { |ci| ci.poster_id }
     else
       # セッションからポスターIDを取得し、それを基にcomposite_imagesを再構築
@@ -50,7 +50,7 @@ class CompositeImagesController < ApplicationController
 
   def create_composite_image(poster)
     wallpaper_path = @room.image.path
-    poster_path = poster.image.path
+    poster_path = poster[:poster].image.path
     CompositeImage.create_composite(@room.id, wallpaper_path, poster_path, poster.id, poster.width, poster.height, @room.x_coordinate, @room.y_coordinate)
   end
 end
