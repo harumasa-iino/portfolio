@@ -4,7 +4,7 @@ class AiCompositeImagesController < ApplicationController
   def index
     @ai_image = AiPoster.where(session_id: @session_id).last
     @error = session[:error]
-    create_composite_image(@ai_image)
+    create_composite_image(@ai_image) if @ai_image.present?
   end
 
   def create
