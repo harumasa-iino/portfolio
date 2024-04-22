@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_20_233028) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_22_154410) do
   create_table "ai_posters", charset: "utf8mb4", force: :cascade do |t|
     t.string "image"
     t.text "revised_prompt"
-    t.integer "session_id"
+    t.string "session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
