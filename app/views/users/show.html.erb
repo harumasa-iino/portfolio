@@ -1,22 +1,23 @@
-<h1>マイページ</h1>
+<div class="container mt-5">
+  <h1>マイページ</h1>
 
-<p>メール: <%= @user.email %></p>
+  <p>メール: <%= @user.email %></p>
 
-<h3>保存画像一覧</h3>
-
-  <% @composite_images.each do |composite_image| %>
-    <div class="col-md-4 mb-3 image-container">
-      <%= link_to image_tag(composite_image.composite_image.url, class: 'img-fluid'), composite_image_path(composite_image), class: 'img-fluid' %>
-      <div class="source-text">
-        画像出典：
-        <% if composite_image.poster.present? %>
-          <%= link_to "Amazon.co.jp", composite_image.poster.url, target: "_blank" %>
-        <% else %>
-          <%= link_to "Amazon.co.jp", "https://www.amazon.co.jp", target: "_blank" %>
-        <%end%>
-        </div>
-    </div>
-  <% end %>
-
-<%= link_to 'アカウントを削除', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: 'アカウントを削除してもよろしいですか？' }, class: 'btn btn-danger' %>
-
+  <h3>保存画像一覧</h3>
+    <% @composite_images.each do |composite_image| %>
+      <div class="col-md-4 mb-3 image-container">
+        <%= link_to image_tag(composite_image.composite_image.url, class: 'img-fluid'), composite_image_path(composite_image), class: 'img-fluid' %>
+        <div class="source-text">
+          画像出典：
+          <% if composite_image.poster.present? %>
+            <%= link_to "Amazon.co.jp", composite_image.poster.url, target: "_blank" %>
+          <% else %>
+            <%= link_to "Amazon.co.jp", "https://www.amazon.co.jp", target: "_blank" %>
+          <%end%>
+          </div>
+      </div>
+    <% end %>
+  <div class="padding-small">
+    <%= link_to 'アカウントを削除', user_path(current_user), data: { turbo_method: :delete, turbo_confirm: 'アカウントを削除してもよろしいですか？' }, class: 'btn btn-danger' %>
+  </div>
+</div>
