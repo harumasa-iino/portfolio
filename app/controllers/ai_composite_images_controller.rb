@@ -26,11 +26,17 @@ class AiCompositeImagesController < ApplicationController
       
     end
 
+    session[:show_loading] = true
     redirect_to ai_composite_images_path
   end
 
   def show
     @composite_image = session[:ai_image]
+  end
+
+  def clear_loading
+    session.delete(:show_loading)
+    head :ok
   end
 
   private
