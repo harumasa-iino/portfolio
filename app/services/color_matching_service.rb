@@ -10,10 +10,10 @@ class ColorMatchingService
   
       posters.each do |poster|
         total_score = calculate_match_score(room_colors, poster.poster_colors)
-        matched_posters << { poster: poster, score: total_score } if total_score > 50
+        matched_posters << poster if total_score > 50
       end
   
-      matched_posters.sort_by { |mp| -mp[:score] }
+      matched_posters
     end
   
     private
