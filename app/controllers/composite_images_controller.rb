@@ -4,23 +4,16 @@ class CompositeImagesController < ApplicationController
 
   def index
     referrer_path = URI(request.referrer || '').path
-    # 経由別にマッチングロジックを使用、経由していない場合はsessionを使用
-    if referrer_path.include?('questions') || referrer_path.include?('rooms')
-      if referrer_path.include?('questions')
-        matched_posters = FilterMatchingService.new(session[:session_id]).match_posters.uniq
-      elsif referrer_path.include?('rooms')
-        matched_posters = ColorMatchingService.new(@room.id).match_posters
-      end
 
-      # ポスターのIDをセッションに保存
-      session[:matched_poster_ids] = matched_posters.map { |mp| mp[:poster].id }
+    if referrer_path.include?('questions') || referrer_path.include?('rooms')
+      matched_posters = match_posters_based_on_referrer
       @composite_images = matched_posters.map { |poster| create_composite_image(poster) }.uniq { |ci| ci.poster_id }
+      # 生成した@composite_imagesのIDをセッションに保存
+      session[:composite_image_ids] = @composite_images.map(&:id)
     else
-      # セッションからポスターIDを取得し、それを基にcomposite_imagesを再構築
-      matched_poster_ids = session[:matched_poster_ids] || []
-      matched_posters = Poster.find(matched_poster_ids)
-  
-      @composite_images = matched_posters.map { |poster| create_composite_image(poster) }.uniq { |ci| ci.poster_id }
+      # referrerにquestionsもroomsも含まれていない場合、セッションからcomposite_image_idsを使用してデータを取得
+      composite_image_ids = session[:composite_image_ids] || []
+      @composite_images = CompositeImage.where(id: composite_image_ids)
     end
   end
 
@@ -44,20 +37,31 @@ class CompositeImagesController < ApplicationController
     @room = Room.where(session_id: session_id).order(:created_at).last
   end
 
+  def match_posters_based_on_referrer
+    referrer_path = URI(request.referrer || '').path
+
+    if referrer_path.include?('questions')
+      FilterMatchingService.new(session[:session_id]).match_posters.uniq
+    elsif referrer_path.include?('rooms')
+
+      ColorMatchingService.new(@room.id).match_posters
+    end
+  end
+
   def set_composite_image
     @composite_image = CompositeImage.find(params[:id])
   end
 
   def create_composite_image(poster)
     wallpaper_path = @room.image.path
-    poster_path = poster[:poster].image.path
+    poster_path = poster.image.path
     CompositeImage.create_composite(
     @room.id, 
     wallpaper_path, 
     poster_path, 
-    poster[:poster].id, 
-    poster[:poster].width, 
-    poster[:poster].height, 
+    poster.id, 
+    poster.width, 
+    poster.height, 
     @room.x_coordinate, 
     @room.y_coordinate
   )

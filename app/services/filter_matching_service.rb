@@ -8,7 +8,7 @@ class FilterMatchingService
       user_result = UserResult.where(session_id: @session_id).order(created_at: :desc).first
       return [] unless user_result
   
-      Poster.joins(:poster_results).where(poster_results: { category_id: user_result.category_id })
+      matched_posters = Poster.joins(:poster_results).where(poster_results: { category_id: user_result.category_id })
     end
   end
   
