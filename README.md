@@ -64,5 +64,3 @@ https://www.figma.com/file/yIQoFFfZWzQS7DEjzxoHnt/%E7%94%BB%E9%9D%A2%E9%81%B7%E7
 
 ## ER図
 https://app.diagrams.net/#G1CY3KqoKHvMPbawyjoVnzfd7X0p63g0h_
-
-<img width="811" alt="ER図" src="image-1.png">
