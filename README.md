@@ -1,4 +1,4 @@
-# portfolio
+# Frame Select
 ## ■サービス概要 
 
 部屋に合うポスターや絵画を提案してくれるアプリ ポスターや絵画を飾りたいと考えている壁を部屋のインテリアと一緒に撮影するだけで、インテリアの雰囲気にあった絵を提案して実際に飾った場合どのような見た目になるのかを見ることが出来るアプリ。購入リンクをつけてそのまま購入の検討まで可能
@@ -37,10 +37,9 @@ SEO対策を行い「ポスター 部屋 おしゃれ」などで検索したユ
 - [x] 会員登録
 - [x] 好みの合成画像を保存
 - [x] ポスターの購入導線
-- [ ] 部屋の色彩認識
-- [ ] ポスターの色彩認識
-- [ ] 色合いでのマッチング機能
-- [ ] 好みのポスターをARで確認
+- [x] 部屋の色彩認識
+- [x] ポスターの色彩認識
+- [x] 色合いでのマッチング機能
 
 ## ■ 使用技術
 - Rubyバージョン: 3.1.4
@@ -51,6 +50,7 @@ SEO対策を行い「ポスター 部屋 おしゃれ」などで検索したユ
 - テストフレームワーク：RSpec
 - 画像処理: MiniMagick（画像合成や加工）
 - 画像解析: Google Vision API
+- 画像生成: OpenAI API DALL·E 3
 - ファイルアップロード: CarrierWave
 - 認証: Google APIを利用したOAuth認証
 - 認証：Devise
@@ -60,7 +60,7 @@ SEO対策を行い「ポスター 部屋 おしゃれ」などで検索したユ
 ## 画面遷移図
 https://www.figma.com/file/yIQoFFfZWzQS7DEjzxoHnt/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=whiteboard&node-id=0%3A1&t=57l0QB5S0kEpsJDx-1
 
-ユーザビリティ確認のためにそれぞれの画面詳細も追加
-
 ## ER図
 https://app.diagrams.net/#G1CY3KqoKHvMPbawyjoVnzfd7X0p63g0h_
+
+[![ER](https://i.gyazo.com/456dc05cc863991975340a6adf4abf96.png)](https://gyazo.com/456dc05cc863991975340a6adf4abf96)
