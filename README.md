@@ -15,17 +15,8 @@
 インテリアを自分で考えるようになる最初のタイミングであるひとり暮らし初めであること、どんなものにしようか迷う層がターゲットです  
 
 ### ■サービスの利用イメージ
-飾る絵やポスターのイメージに迷った際に、アプリを利用することで部屋のインテリアに合ったポスターや絵を知ることができる。
-実際に飾るイメージを知れることで購入のハードルが下がり、実際に飾って理想のインテリアに近づけることが出来る。
-
-### 色彩マッチング機能
-<video src="https://github.com/harumasa-iino/portfolio/assets/139933050/a449a951-0e98-4e79-adf8-4866c5a8f530
-" controls="true" width="600" ></video>
-
-### AI画像マッチング機能
-<video src="https://github.com/harumasa-iino/portfolio/assets/139933050/38eeb7cd-f450-4884-87e8-45c48be0ac1e
-" controls="true" width="600" ></video>
-
+飾る絵やポスターのイメージに迷った際に、アプリを利用することで部屋のインテリアに合ったポスターや絵を知ることができます。
+実際に飾るイメージを知れることで購入のハードルが下がり、実際に飾って理想のインテリアに近づけることが本サービスの特徴です。
 
 ## ■ 使用技術一覧
 <img src="https://img.shields.io/badge/-Node.js-000000.svg?logo=node.js&style=for-the-badge">
@@ -73,7 +64,7 @@
 - 画像アップロード(CarrierWave)
 - ポスターとのマッチング機能
     - デザインタイプの質問/回答
-    - 画像解析(Google Vision API)によるレコメンド機能
+    - 画像の色彩解析(Google Vision API)によるレコメンド機能
 - 画像合成機能(MiniMagic)
 - AI画像生成機能(OpenAI API DALL·E 3)
 - マイページへの画像保存
@@ -82,6 +73,18 @@
 
 ### テスト
 - RSpec
+
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1; margin-right: 10px;">
+    <h4>画像解析によるレコメンド機能</h4>
+    <img src="https://github.com/harumasa-iino/portfolio/assets/139933050/eb926e05-066e-4c89-84c1-755ce34be468" alt="color" style="width: 100%;">
+  </div>
+
+  <div style="flex: 1; margin-left: 10px;">
+    <h4>AI画像生成機能</h4>
+    <img src="https://github.com/harumasa-iino/portfolio/assets/139933050/70d5b52c-6267-4cef-adff-715c81b2c993" alt="AI" style="width: 100%;">
+  </div>
+</div>
 
 ## ER図
 [![ER](https://i.gyazo.com/456dc05cc863991975340a6adf4abf96.png)](https://gyazo.com/456dc05cc863991975340a6adf4abf96)
