@@ -38,7 +38,7 @@
 /node_modules
 
 # Ignore compiled files
-/public/assets/
+/public/assets
 
 # Ignore manifest files
 /public/assets/.sprockets-manifest-*.json
