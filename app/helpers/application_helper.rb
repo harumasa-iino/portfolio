@@ -19,14 +19,14 @@ module ApplicationHelper
       reverse: true,
       description: 'このアプリは、お部屋のインテリアにぴったりなポスターや絵画を見つけるお手伝いをします。
       独自のマッチングシステムを用いて空間に合わせたアート作品を提案することで、統一感のある理想の部屋作りをサポート。ポスターであなたの部屋をもっとおしゃれな空間に変えてみませんか？',
-      og: defalut_og,
+      og: default_og,
       twitter: default_twitter_card
     }
   end
   
   private
   
-  def defalut_og
+  def default_og
     {
       site_name: :site,
       title: :title,
