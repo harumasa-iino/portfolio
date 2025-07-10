@@ -4,16 +4,16 @@
       <div class="border p-4">
         <h2 class="text-dark">インテリアのアップロード</h2>
         <p>ポスターを飾りたい壁を中央にして、部屋のインテリアをアップロードしましょう。</p>
-      
+
         <div class="d-none">
           <%= form.file_field :image, id: "room_image", class: "form-control", onchange: "this.form.submit();" %>
         </div>
         <label for="room_image" class="btn btn-primary d-block mt-3">
           <span id="upload_label">画像をアップロードする</span>
         </label>
-      
+
         <%= form.hidden_field :image_cache %>
       </div>
     </div>
-  <% end %>  
+  <% end %>
 </div>

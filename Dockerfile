@@ -1,54 +1,70 @@
-FROM ruby:3.1
-# 公式→https://hub.docker.com/_/ruby
+# =================================================================
+# ビルド全体で使う変数をARGで定義
+# =================================================================
+ARG YARN_VERSION=1.22.19
 
-# ruby3.1のイメージがBundler version 2.3.7で失敗するので、gemのバージョンを追記
+# =================================================================
+# ステージ1: Node.jsとYarnを準備するビルド環境
+# =================================================================
+# DebianベースのNode.jsイメージに変更し、OSの互換性を確保
+FROM node:16-bullseye-slim AS node-builder
+
+# このステージで使うARGを再宣言
+ARG YARN_VERSION
+
+# ca-certificates を追加してSSL証明書の問題を解決
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/*
+
+# Yarnをダウンロードして/opt配下に展開する
+RUN curl -fsSL "https://github.com/yarnpkg/yarn/releases/download/v$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
+  | tar -xzC /opt
+
+# =================================================================
+# ステージ2: 最終的に使用するアプリケーションイメージ
+# =================================================================
+FROM ruby:3.1.4
+
+# このステージで使う変数を再度宣言
+ARG YARN_VERSION
 ARG RUBYGEMS_VERSION=3.3.20
 
-# RUN：任意のコマンド実行
-RUN mkdir /portfolio
+# <<< 修正点: PostgreSQL用からMySQL用のパッケージに変更
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+    build-essential \
+    default-libmysqlclient-dev \
+    default-mysql-client \
+    && rm -rf /var/lib/apt/lists/*
 
-# WORKDIR：作業ディレクトリを指定
 WORKDIR /portfolio
 
-ENV YARN_VERSION 1.22.19
-RUN mkdir -p /opt
-COPY --from=node /opt/yarn-v$YARN_VERSION /opt/yarn
-COPY --from=node /usr/local/bin/node /usr/local/bin/
-COPY --from=node /usr/local/lib/node_modules/ /usr/local/lib/node_modules/
-RUN ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
-    && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg \
-    && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
-    && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
-    && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npx
+# -----------------------------------------------------------------
+# node-builderステージからNode.jsとYarnをコピー
+# -----------------------------------------------------------------
+COPY --from=node-builder /usr/local/bin/node /usr/local/bin/
+COPY --from=node-builder /opt/yarn-v${YARN_VERSION} /opt/yarn
 
-# 必要なパッケージのインストール
-RUN apt-get update -qq && apt-get install -y \
-    build-essential \
-    libpq-dev \
-    postgresql-client
+# nodeとyarnの両方にPATHを通す
+ENV PATH /usr/local/bin:/opt/yarn/bin:$PATH
 
-# yarnの更新
-COPY yarn.lock /portfolio/yarn.lock
-RUN yarn install
-
-# COPY：コピー元とコピー先を指定
-# ローカルのGemfileをコンテナ内の/app/Gemfileに
-COPY Gemfile /portfolio/Gemfile
-
-COPY Gemfile.lock /portfolio/Gemfile.lock
-
-# RubyGemsをアップデート
+# -----------------------------------------------------------------
+# GemとYarnパッケージのインストール
+# -----------------------------------------------------------------
+COPY Gemfile Gemfile.lock ./
 RUN gem update --system ${RUBYGEMS_VERSION} && \
     bundle install
 
-COPY . /portfolio
+COPY package.json yarn.lock ./
+RUN yarn install
 
-# コンテナ起動時に実行させるスクリプトを追加
+# -----------------------------------------------------------------
+# アプリケーションコードのコピーと設定
+# -----------------------------------------------------------------
+COPY . .
+
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
+
 EXPOSE 3001
 
-# CMD:コンテナ実行時、デフォルトで実行したいコマンド
-# Rails サーバ起動
 CMD ["rails", "server", "-b", "0.0.0.0"]

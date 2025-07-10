@@ -82,10 +82,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_22_154410) do
   end
 
   create_table "poster_results", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "poster_id"
+    t.bigint "category_id", null: false
+    t.bigint "poster_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_poster_results_on_category_id"
+    t.index ["poster_id"], name: "index_poster_results_on_poster_id"
   end
 
   create_table "posters", charset: "utf8mb4", force: :cascade do |t|
@@ -139,10 +141,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_22_154410) do
   end
 
   create_table "user_results", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "category_id"
+    t.bigint "category_id", null: false
     t.string "session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_user_results_on_category_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -163,7 +166,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_22_154410) do
   add_foreign_key "poster_answers", "questions"
   add_foreign_key "poster_colors", "colors"
   add_foreign_key "poster_colors", "posters"
+  add_foreign_key "poster_results", "categories"
+  add_foreign_key "poster_results", "posters"
   add_foreign_key "room_colors", "colors"
   add_foreign_key "room_colors", "rooms"
   add_foreign_key "sns_credentials", "users"
+  add_foreign_key "user_results", "categories"
 end

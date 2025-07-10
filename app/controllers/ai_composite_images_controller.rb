@@ -8,26 +8,23 @@ class AiCompositeImagesController < ApplicationController
   end
 
   def create
-    prompt = "Generate either a poster, painting or photo. I'll leave the theme to you."
-    response = OpenAiService.generate_image(prompt)
+    prompt   = "Generate either a poster, painting or photo. I'll leave the theme to you."
+    result   = OpenAiService.generate_image(prompt)
 
-    if response.key?("error")
-      session[:error] = response["error"]
-    else
-      image_url = response["data"][0]["url"]
-      revised_prompt = response["data"][0]["revised_prompt"]
-
-      ai_poster = AiPoster.new
-        if ai_poster.save_image_and_data(image_url, revised_prompt, @session_id)
-          session[:error] = nil
-        else
-          session[:error] = "Failed to create Ai Poster"
-        end
-      
+    if result.is_a?(Hash) && result[:error]
+      session[:error] = result[:error]
+      return
     end
 
-    session[:show_loading] = true
-    redirect_to ai_composite_images_path
+    image_url      = Array(result).first
+    revised_prompt = prompt
+
+    ai_poster = AiPoster.new
+    if ai_poster.save_image_and_data(image_url, revised_prompt, @session_id)
+      session[:error] = nil
+    else
+      session[:error] = "Failed to create Ai Poster"
+    end
   end
 
   def show

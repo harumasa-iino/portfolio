@@ -1,4 +1,3 @@
-version: '3'
 services:
   web:
     # build: .でdocker-compose.ymlと同じフォルダにDockerfileがあることを示す
