@@ -1,67 +1,80 @@
-document.addEventListener('turbo:load', setupDraggable);
-document.addEventListener('DOMContentLoaded', setupDraggable);
+document.addEventListener("turbo:load",  setupDraggable);
+document.addEventListener("DOMContentLoaded", setupDraggable);
 
 function setupDraggable() {
-  const frame = document.getElementById('poster-frame');
-  const container = frame.parentNode;
-  let offsetX, offsetY;
-  let isDragging = false;
+  const frame      = document.getElementById("poster-frame");
+  const container  = frame.parentNode;
+  let offsetX = 0, offsetY = 0, isDragging = false;
 
+  /* ――― ドラッグ開始 ――― */
+  frame.addEventListener("mousedown",  startDrag);
+  frame.addEventListener("touchstart", startDrag, { passive: false });
 
-  frame.addEventListener('mousedown', startDrag);
-  frame.addEventListener('touchstart', startDrag);
-
-  function startDrag(e) {
-    e.preventDefault();
+  function startDrag(ev) {
+    ev.preventDefault();
     isDragging = true;
 
-    if (e.type === 'mousedown') {
-      const rect = frame.getBoundingClientRect();
-      offsetX = e.clientX - (rect.left + window.scrollX);
-      offsetY = e.clientY - (rect.top + window.scrollY);
-    } else {
-      const touch = e.touches[0];
-      const rect = frame.getBoundingClientRect();
-      offsetX = touch.clientX - (rect.left + window.scrollX);
-      offsetY = touch.clientY - (rect.top + window.scrollY);
-    }
+    const { pageX, pageY } = getPoint(ev);
+    const rect = frame.getBoundingClientRect();
+    const scrollX = window.scrollX, scrollY = window.scrollY;
 
-    document.addEventListener('mousemove', moveDrag);
-    document.addEventListener('touchmove', moveDrag);
-    document.addEventListener('mouseup', stopDrag);
-    document.addEventListener('touchend', stopDrag);
+    // クリックした位置とフレーム左上の差分を保存
+    offsetX = pageX - (rect.left + scrollX);
+    offsetY = pageY - (rect.top  + scrollY);
+
+    document.addEventListener("mousemove",  dragMove);
+    document.addEventListener("touchmove", dragMove, { passive: false });
+    document.addEventListener("mouseup",    endDrag);
+    document.addEventListener("touchend",  endDrag);
   }
 
-  function moveDrag(e) {
-    e.preventDefault();
+  /* ――― ドラッグ中 ――― */
+  function dragMove(ev) {
+    if (!isDragging) return;
+    ev.preventDefault();
 
-    if (isDragging) {
-      if (e.type === 'mousemove') {
-        frame.style.left = (e.clientX - offsetX - container.getBoundingClientRect().left) + 'px';
-        frame.style.top = (e.clientY - offsetY - container.getBoundingClientRect().top) + 'px';
-      } else {
-        const touch = e.touches[0];
-        frame.style.left = (touch.clientX - offsetX - container.getBoundingClientRect().left) + 'px';
-        frame.style.top = (touch.clientY - offsetY - container.getBoundingClientRect().top) + 'px';
-      }
-    }
+    const { pageX, pageY } = getPoint(ev);
+
+    const containerRect = container.getBoundingClientRect();
+    const scrollX = window.scrollX, scrollY = window.scrollY;
+
+    const newLeft = pageX - offsetX - (containerRect.left + scrollX);
+    const newTop  = pageY - offsetY - (containerRect.top  + scrollY);
+
+    frame.style.left = `${newLeft}px`;
+    frame.style.top  = `${newTop}px`;
   }
 
-  function stopDrag(e) {
+  /* ――― ドラッグ終了 ――― */
+  function endDrag() {
     isDragging = false;
-    document.removeEventListener('mousemove', moveDrag);
-    document.removeEventListener('touchmove', moveDrag);
-    document.removeEventListener('mouseup', stopDrag);
-    document.removeEventListener('touchend', stopDrag);
+    document.removeEventListener("mousemove",  dragMove);
+    document.removeEventListener("touchmove", dragMove);
+    document.removeEventListener("mouseup",    endDrag);
+    document.removeEventListener("touchend",  endDrag);
     updateCoordinates(frame);
+  }
+
+  /* ――― マウス／タッチ座標を pageX/pageY に統一 ――― */
+  function getPoint(ev) {
+    if (ev.type.startsWith("touch")) {
+      const t = ev.touches[0] || ev.changedTouches[0];
+      return { pageX: t.pageX, pageY: t.pageY };
+    } else {
+      return { pageX: ev.pageX, pageY: ev.pageY };
+    }
   }
 }
 
+/* ---------------- 座標をフォームに保存 ---------------- */
 function updateCoordinates(frame) {
   const container = frame.parentNode;
-  const rect = frame.getBoundingClientRect();
-  const centerX = (rect.left + rect.width / 2 - container.getBoundingClientRect().left) / container.offsetWidth * 100;
-  const centerY = (rect.top + rect.height / 2 - container.getBoundingClientRect().top) / container.offsetHeight * 100;
-  document.getElementById('poster_x').value = centerX.toFixed(2);
-  document.getElementById('poster_y').value = centerY.toFixed(2);
+  const rect      = frame.getBoundingClientRect();
+  const cRect     = container.getBoundingClientRect();
+
+  const centerX = ((rect.left - cRect.left) + rect.width  / 2) / container.offsetWidth  * 100;
+  const centerY = ((rect.top  - cRect.top ) + rect.height / 2) / container.offsetHeight * 100;
+
+  document.getElementById("poster_x").value = centerX.toFixed(2);
+  document.getElementById("poster_y").value = centerY.toFixed(2);
 }

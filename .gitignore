@@ -29,7 +29,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-/config/meta-coral-417015-08044418a078.json
+/config/meta-coral-417015-408390bb2ba6.json
 /.env
 
 /app/assets/builds/*
