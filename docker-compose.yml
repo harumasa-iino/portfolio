@@ -12,9 +12,9 @@ services:
     tty: true
     stdin_open: true
     environment:
-      MYSQL_HOST: db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
+      DB_HOST: db
+      DB_USERNAME: root
+      DB_PASSWORD: password
 
   db:
     image: mysql:5.7
