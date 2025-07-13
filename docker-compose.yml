@@ -7,6 +7,7 @@ services:
       - .env
     volumes:
       - .:/portfolio
+      - uploads-volume:/portfolio/public/uploads
     ports:
       - "3001:3001"
     depends_on:
@@ -27,3 +28,4 @@ services:
 
 volumes:
   db-volume:
+  uploads-volume:

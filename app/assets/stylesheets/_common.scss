@@ -258,7 +258,7 @@
   #poster-frame {
     position: absolute;
     width: 15%;  /* 画像の幅の15% */
-    height: calc(15% * 1.5); /* 幅の15%に1.5の比率を掛けた値 */
+    height: 15%; /* 幅の15%に1.5の比率を掛けた値 */
     background-color: rgba(255,255,255,0.5);
     border: 2px dashed black;
     cursor: move;
