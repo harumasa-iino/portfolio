@@ -4,6 +4,7 @@ class InteriorUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
+  process resize_to_limit: [1200, 1200]
 
   process :resize_to_fit
 
